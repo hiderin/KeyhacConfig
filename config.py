@@ -883,9 +883,13 @@ def configure(keymap):
         def switch_rect_sel():
             if isExcel(keymap.getWindow()):
                 keymap.command_InputKey("C-Space")()
+                keymap_vim.flg_selmode =2
             elif isWord(keymap.getWindow()):
                 keymap.command_InputKey("C-S-F8")()
-            keymap_vim.flg_selmode =2
+                keymap_vim.flg_selmode =2
+            else:
+                keymap.command_InputKey("S-F6")()
+                keymap_vim.flg_selmode =1
 
         @profile
         def set_searchmode():
