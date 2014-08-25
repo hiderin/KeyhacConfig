@@ -352,6 +352,12 @@ def configure(keymap):
             return False
 
         @profile
+        def isTButton(wnd):
+            if wnd.getClassName() in ("TButton"):
+                return True
+            return False
+
+        @profile
         def isApp(wnd):
             if isConsoleWindow(wnd):
                 return True
@@ -1571,9 +1577,15 @@ def configure(keymap):
                     elif ikey == "RC-r":
                         repeat(redo)()
                     elif ikey == "n":
-                        ScrollBind(repeat(search_next))
+                        if isTButton(keymap.getWindow()):
+                            keymap.command_InputKey("n")()
+                        else:
+                            ScrollBind(repeat(search_next))
                     elif ikey == "S-n":
-                        ScrollBind(repeat(search_prev))
+                        if isTButton(keymap.getWindow()):
+                            keymap.command_InputKey("S-n")()
+                        else:
+                            ScrollBind(repeat(search_prev))
                     elif ikey == "i":
                         if (isCraftWare(keymap.getWindow()) and
                             keymap_vim.flg_cf_mode==0):
@@ -1707,6 +1719,8 @@ def configure(keymap):
                                 keymap.command_InputKey("l")()
                             else:
                                 keymap.command_InputKey(ikey)()
+                        elif (ikey=="y" and isTButton(keymap.getWindow())):
+                            keymap.command_InputKey(ikey)()
                         else:
                             select_method(ikey)
                     elif ikey == "S-d":
