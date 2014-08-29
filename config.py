@@ -659,7 +659,12 @@ def configure(keymap):
             return False
 
         def isTenKeyClass(wnd):
-            if isExcel(wnd) or isWord(wnd):
+            if ((wnd.getClassName() in (
+                "TRValGrid",
+                "CRvgIntrEdit",             #TRValGridのセルのクラス
+                )) or
+                isExcel(wnd) or
+                isWord(wnd)):
                 return True
             return False
 
