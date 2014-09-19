@@ -664,6 +664,7 @@ def configure(keymap):
         def isTenKeyClass(wnd):
             if ((wnd.getClassName() in (
                 "TRValGrid",
+                "TF8Edit",
                 "CRvgIntrEdit",             #TRValGridのセルのクラス
                 )) or
                 isExcel(wnd) or
