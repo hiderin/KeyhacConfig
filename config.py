@@ -441,7 +441,10 @@ def configure(keymap):
                         if exetxt:
                             if cnt == num:
                                  #あふwは無視する
-                                if not isAfwWindow(wnd):
+                                if not (isAfwWindow(wnd) or
+                                        (wnd.getClassName() in (
+                                            "TMdenMainForm",
+                                            ))):
                                     ForegroundWindow(wnd)()
                                     return
                                 else:
