@@ -1001,6 +1001,11 @@ def configure(keymap):
             if isMdentaku(keymap.getWindow()):
                 keymap_vim.flg_Mdentaku =1
 
+        def concat_line():
+            keymap.command_InputKey("End")()
+            keymap.command_InputKey("Space")()
+            keymap.command_InputKey("Delete")()
+
         def open_line():
             keymap.command_InputKey("End","Enter")()
             set_insertmode()
@@ -1567,6 +1572,11 @@ def configure(keymap):
                             keymap.command_InputKey("j")()
                         elif isAf(keymap.getWindow()):
                             keymap.command_InputKey("j")()
+                    elif ikey == "S-j":
+                        if isCraftWare(keymap.getWindow()) or isAf(keymap.getWindow()):
+                            keymap.command_InputKey("S-j")
+                        else :
+                            concat_line()
                     elif ikey == "LC-k":
                         if isCraftWare(keymap.getWindow()):
                             keymap.command_InputKey("k")()
