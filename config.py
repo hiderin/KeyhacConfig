@@ -2247,6 +2247,19 @@ def configure(keymap):
                     keymap.command_InputKey("A-(243)")()
             return _fanc
 
+        #skk.vimへの対応(SKKIMEを起動させない)
+        if 0:
+            def vim_set_skk():
+                def _fanc():
+                    keymap.command_InputKey("C-J")()
+                    #IMEのoff
+                    if keymap.getWindow().getImeStatus():
+                        keymap.command_InputKey("A-(243)")()
+                    keymap.command_InputKey("C-J")()
+                return _fanc
+
+            keymap_ovim["LC-J"] = vim_set_skk()
+
         keymap_ovim = keymap.defineWindowKeymap(class_name=u'Vim*')
         keymap_ovim["LC-RShift"] = vim_input_esc()
         keymap_ovim["O-RShift"] = keymap.command_InputKey("Space")
