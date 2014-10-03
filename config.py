@@ -2165,7 +2165,10 @@ def configure(keymap):
                     keymap.command_InputKey("Enter")()
                     keymap_vim.tenkeycount += 1
                 elif keymap_vim.tenkeymode==3:
-                    method_Atmark("Enter")()
+                    if keymap_vim.flg_mcr:                 #マクロ実行中or記録中
+                        keymap.command_InputKey("Enter")()
+                    else:
+                        method_Atmark("Enter")()
                 else:
                     keymap.command_InputKey("Enter")()
             else:
