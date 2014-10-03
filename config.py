@@ -214,6 +214,7 @@ def configure(keymap):
                                     "Afx:00400000:b:00010003:00000006:024E0449",    #mp3tag
                                     "Afx:400000:8:10011:0:180573",                  #InstallShield
                                     "Afx:00400000:b:00010003:00000006:01520717",    #SoundEngine
+                                    "Afx:00400000:b:00010003:00000006:000408F9",    #SoundEngine
                                     "Afx:400000:8:10011:0:2804b5",                  #VC++6
                                     "TFrmMainForm",                                 #FRAME-Ⅰ
                                     "Afx:400000:b:10011:6:86202b3",                 #PILE-1
