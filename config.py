@@ -248,6 +248,11 @@ def configure(keymap):
                 return True
             return False
 
+        def isMdentaku(wnd):
+            if wnd.getClassName().startswith("TMdenMainForm"):
+                return True
+            return False
+
         def isAfLogForm(wnd):
             if wnd.getClassName().startswith("TLogForm"):
                 return True
@@ -565,6 +570,9 @@ def configure(keymap):
         # EXCELLなどで日本語入力を固定する
         keymap_vim.flg_fixinput=0
 
+        # M電卓で計算済みかどうか
+        keymap_vim.flg_Mdentaku=0
+
         def vim_parm_reset():
             keymap_vim.flg_mtd = 0
             keymap_vim.command_str =""
@@ -576,6 +584,7 @@ def configure(keymap):
             vim_parm_reset
             keymap_vim.flg_mcr =0
             keymap_vim.flg_scroll=0
+            keymap_vim.flg_Mdentaku=0
 
         ########################################################################
         # キーボードマクロの実装
@@ -989,6 +998,8 @@ def configure(keymap):
 
         def input_enter():
             keymap.command_InputKey("Enter")()
+            if isMdentaku(keymap.getWindow()):
+                keymap_vim.flg_Mdentaku =1
 
         def open_line():
             keymap.command_InputKey("End","Enter")()
@@ -1030,8 +1041,12 @@ def configure(keymap):
                         else:
                             keymap.command_InputKey("End","Enter")()
 
-            keymap.command_InputKey("C-v")()
+            if keymap_vim.flg_Mdentaku == 1:
+                keymap.command_InputKey("C-F11")()
+            else:
+                keymap.command_InputKey("C-v")()
             keymap_vim.flg_selmode = 0
+            keymap_vim.flg_Mdentaku =0
             set_vimmode()
 
         @profile
@@ -2135,6 +2150,8 @@ def configure(keymap):
                     keymap.command_InputKey("Enter")()
             else:
                 keymap.command_InputKey("Enter")()
+                if isMdentaku(keymap.getWindow()):
+                    keymap_vim.flg_Mdentaku=1
 
         def tenkey_reset():
             if keymap_vim.tenkeymode == 1:
