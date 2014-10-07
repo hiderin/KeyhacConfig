@@ -13,7 +13,6 @@ from keyhac import *
 # ・挿入モードでLC-pで貼り付け
 # ・M電卓を常に手前に表示した時のLC-0,LC-9のWindow切り替えの制御
 # ・line単位でのコピー切り取り後の貼り付け処理が不十分
-# ・Shft+テンキー後のLCでCtrlが押しっぱなしの状態になる
 ################################################################################
 
 ## 処理時間計測のデコレータ
@@ -106,7 +105,7 @@ def configure(keymap):
     # キーの単純な置き換え
     keymap.replaceKey( "LWin", 235 )
 #    keymap.replaceKey( "LShift", "LAlt" )
-    keymap.replaceKey( "RShift", "RAlt" )
+#    keymap.replaceKey( "RShift", "RAlt" )
 #    keymap.replaceKey( "(240)", 255 )
 #    keymap.replaceKey( "(242)", 255 )
 #    keymap.replaceKey( "Apps", "RAlt" )
