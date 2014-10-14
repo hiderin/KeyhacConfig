@@ -229,6 +229,7 @@ def configure(keymap):
                                     "Afx:400000:8:10011:0:2804b5",                  #VC++6
                                     "TFrmMainForm",                                 #FRAME-Ⅰ
                                     "Afx:400000:b:10011:6:86202b3",                 #PILE-1
+                                    "TSDIAppForm",                                  #PILE-2(BCB全般共通の可能性あり)
                                     "{0F04AF43-7B85-46A5-A0A7-6D323A84AD7C}",       #Asr
                                     "ThunderRT6MDIForm",                            #A9CAD
                                     "TPreViewForm",                                 #COSMOのプレビューウィンドウ
