@@ -694,6 +694,7 @@ def configure(keymap):
             if ((wnd.getClassName() in (
                 "TRValGrid",
                 "TF8Edit",
+                "Edit",
                 "CRvgIntrEdit",             #TRValGridのセルのクラス
                 )) or
                 isExcel(wnd) or
