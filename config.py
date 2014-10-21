@@ -214,6 +214,7 @@ def configure(keymap):
             if wnd.getClassName() in ("Vim",                                        #Vim
                                     "CfilerWindowClass",                            #内骨格
                                     "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
+                                    "SunAwtFrame",                                  #Android Studio
                                     "TFormOutlineElementWizard",                    #Forum8のアウトライン入力ウィンドウ
                                     "TFormOutNew",                                  #Forum8断面算定のプレビューウィンドウ
                                     "SmartVision Main Frame Window",                #SmartVision
@@ -257,6 +258,11 @@ def configure(keymap):
 
         def isExcel(wnd):
             if wnd.getClassName().startswith("EXCEL"):
+                return True
+            return False
+
+        def isAndroidStudio(wnd):
+            if wnd.getClassName().startswith("SunAwtFrame"):
                 return True
             return False
 
@@ -1121,7 +1127,10 @@ def configure(keymap):
             keymap.command_InputKey("C-o")()
 
         def open_newfile():
-            keymap.command_InputKey("C-n")()
+            if isAndroidStudio(keymap.getWindow()):
+                keymap.command_InputKey("C-F2")()
+            else:
+                keymap.command_InputKey("C-n")()
 
         def save_file():
             keymap.command_InputKey("C-s")()
@@ -1574,6 +1583,11 @@ def configure(keymap):
                             keymap.command_InputKey("m")()
                         elif isAf(keymap.getWindow()):
                             keymap.command_InputKey("m")()
+                    elif ikey == "e":
+                        if isAndroidStudio(keymap.getWindow()):
+                            keymap.command_InputKey("F2")()
+                        else:
+                            keymap.command_InputKey("e")()
                     elif ikey == "S-h":
                         if isCraftWare(keymap.getWindow()):
                             keymap.command_InputKey("h")()
