@@ -2033,7 +2033,7 @@ def configure(keymap):
         keymap_vim["U-Alt"] = send_vim_key("U-Alt")
 
         keymap_vim["Esc"] = send_vim_key("Esc")
-        keymap_vim["LC-RShift"] = send_vim_key("Esc")
+        keymap_vim["LC-RShift"] = send_vim_key("LC-RShift")
         keymap_vim["LC-F9"]= set_nomalmode
         keymap_vim["LC-F10"]= Vimmode_and_Reset
 
