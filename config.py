@@ -16,6 +16,7 @@ from keyhac import *
 # ・キーボードマクロをiniファイルに登録してマクロを流用する         [mcr-log]
 # ・リーピート回数のMAX値を決める、コマンドから可変にする。         [rpt-max]
 # ・左右のCtrlとShiftをうまく使い分けてC-SpaceやS-Spaceを復活させる [ctrl-sft-spc]
+# ・IMEがONの時にテンキが入力出来ない時がある                       [ime-tenkey]
 # ・LC-Shiftはvimmodeに戻すのみでLC-Shift2回にESCにする。           [lc-s-esc]
 ################################################################################
 
