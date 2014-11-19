@@ -698,6 +698,7 @@ def configure(keymap):
                 "TRValGrid",
                 "TF8Edit",
                 "Edit",
+                "TInplaceEdit",             #Forum8のグリッド
                 "CRvgIntrEdit",             #TRValGridのセルのクラス
                 )) or
                 isExcel(wnd) or
