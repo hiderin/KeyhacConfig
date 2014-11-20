@@ -1781,7 +1781,9 @@ def configure(keymap):
                         set_visualmode()
                     elif ikey == "Esc":
                         vim_parm_reset()
+                        keymap.command_InputKey("Esc")()
 #                        keymap_vim.flg_fixinput=0
+                    elif ikey == "LC-RShift":
                         input_esc()
                     elif ikey == "Back":
                         repeat(input_backspace)()
@@ -1854,6 +1856,9 @@ def configure(keymap):
                 elif ikey == "Esc":
                     set_vimmode()
                     keymap_vim.flg_cf_mode = 1
+                elif ikey == "LC-RShift":
+                    input_esc()
+                    keymap_vim.flg_cf_mode = 1
                 elif ikey == "Enter":
                     if (isEnterCanselClass(keymap.getWindow())
                          and keymap_vim.flg_fixinput==0):
@@ -1899,6 +1904,10 @@ def configure(keymap):
                         if keymap_vim.flg_selmode==2:
                             keymap.command_InputKey("Esc")()
                         set_vimmode()
+                    elif ikey == "LC-RShift":
+                        if keymap_vim.flg_selmode==2:
+                            keymap.command_InputKey("Esc")()
+                        input_esc()
                     elif ikey == "LC-y":
                         scroll_up()
                     elif ikey == "RC-e":
@@ -1936,7 +1945,7 @@ def configure(keymap):
 
             # CommandMode(コマンドモード)
             elif keymap_vim.mainmode==4:
-                if ikey == "Esc":
+                if (ikey == "Esc" or ikey =="LC-RShift"):
                     keymap_vim.command_str = ""
                     set_vimmode()
                 elif ikey == "Enter":
@@ -1967,6 +1976,8 @@ def configure(keymap):
                         keymap.command_InputKey(ikey)()
                 elif ikey == "Esc":
                     set_vimmode()
+                elif ikey == "LC-RShift":
+                    input_esc()
                 else:
                     keymap.command_InputKey(ikey)()
 
