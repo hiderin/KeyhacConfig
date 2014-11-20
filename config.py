@@ -607,6 +607,18 @@ def configure(keymap):
             keymap_vim.flg_scroll=0
             keymap_vim.flg_Mdentaku=0
 
+    ############################################################################
+    # Vim_Init 変数の初期化
+    ############################################################################
+
+<<<<<<< HEAD
+        # LC-Shiftの時間計測用変数
+        keymap_vim.esc_tmr = 0
+=======
+    # LC-Shiftの時間計測用変数
+    keymap_vim.esc-tmr = 0
+>>>>>>> 29bdc4c... keymap_vim.esc-tmrの初期化を追加した
+
         ########################################################################
         # キーボードマクロの実装
         ########################################################################
@@ -1004,7 +1016,14 @@ def configure(keymap):
             keymap.command_InputKey("End")()
 
         def input_esc():
-            keymap.command_InputKey("Esc")()
+            import time
+            timer = time.clock
+            dlt = 1000*(timer()-keymap_vim.esc_tmr)
+            if dlt < 200 :
+                keymap.command_InputKey("Esc")()
+            else:
+                set_vimmode()
+            keymap_vim.esc_tmr = timer()
 
         def input_tab():
             keymap.command_InputKey("Tab")()
