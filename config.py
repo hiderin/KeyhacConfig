@@ -17,7 +17,6 @@ from keyhac import *
 # ・リーピート回数のMAX値を決める、コマンドから可変にする。         [rpt-max]
 # ・左右のCtrlとShiftをうまく使い分けてC-SpaceやS-Spaceを復活させる [ctrl-sft-spc]
 # ・IMEがONの時にテンキが入力出来ない時がある                       [ime-tenkey]
-# ・LC-Shiftはvimmodeに戻すのみでLC-Shift2回にESCにする。           [lc-s-esc]
 ################################################################################
 
 ## 処理時間計測のデコレータ
@@ -608,6 +607,13 @@ def configure(keymap):
             keymap_vim.flg_scroll=0
             keymap_vim.flg_Mdentaku=0
 
+    ############################################################################
+    # Vim_Init 変数の初期化
+    ############################################################################
+
+        # LC-Shiftの時間計測用変数
+        keymap_vim.esc_tmr = 0
+
         ########################################################################
         # キーボードマクロの実装
         ########################################################################
@@ -1006,7 +1012,14 @@ def configure(keymap):
             keymap.command_InputKey("End")()
 
         def input_esc():
-            keymap.command_InputKey("Esc")()
+            import time
+            timer = time.clock
+            dlt = 1000*(timer()-keymap_vim.esc_tmr)
+            if dlt < 200 :
+                keymap.command_InputKey("Esc")()
+            else:
+                set_vimmode()
+            keymap_vim.esc_tmr = timer()
 
         def input_tab():
             keymap.command_InputKey("Tab")()
@@ -1764,7 +1777,9 @@ def configure(keymap):
                         set_visualmode()
                     elif ikey == "Esc":
                         vim_parm_reset()
+                        keymap.command_InputKey("Esc")()
 #                        keymap_vim.flg_fixinput=0
+                    elif ikey == "LC-RShift":
                         input_esc()
                     elif ikey == "Back":
                         repeat(input_backspace)()
@@ -1837,6 +1852,9 @@ def configure(keymap):
                 elif ikey == "Esc":
                     set_vimmode()
                     keymap_vim.flg_cf_mode = 1
+                elif ikey == "LC-RShift":
+                    input_esc()
+                    keymap_vim.flg_cf_mode = 1
                 elif ikey == "Enter":
                     if (isEnterCanselClass(keymap.getWindow())
                          and keymap_vim.flg_fixinput==0):
@@ -1882,6 +1900,10 @@ def configure(keymap):
                         if keymap_vim.flg_selmode==2:
                             keymap.command_InputKey("Esc")()
                         set_vimmode()
+                    elif ikey == "LC-RShift":
+                        if keymap_vim.flg_selmode==2:
+                            keymap.command_InputKey("Esc")()
+                        input_esc()
                     elif ikey == "LC-y":
                         scroll_up()
                     elif ikey == "RC-e":
@@ -1919,7 +1941,7 @@ def configure(keymap):
 
             # CommandMode(コマンドモード)
             elif keymap_vim.mainmode==4:
-                if ikey == "Esc":
+                if (ikey == "Esc" or ikey =="LC-RShift"):
                     keymap_vim.command_str = ""
                     set_vimmode()
                 elif ikey == "Enter":
@@ -1950,6 +1972,8 @@ def configure(keymap):
                         keymap.command_InputKey(ikey)()
                 elif ikey == "Esc":
                     set_vimmode()
+                elif ikey == "LC-RShift":
+                    input_esc()
                 else:
                     keymap.command_InputKey(ikey)()
 
@@ -2035,7 +2059,7 @@ def configure(keymap):
         keymap_vim["U-Alt"] = send_vim_key("U-Alt")
 
         keymap_vim["Esc"] = send_vim_key("Esc")
-        keymap_vim["LC-RShift"] = send_vim_key("Esc")
+        keymap_vim["LC-RShift"] = send_vim_key("LC-RShift")
         keymap_vim["LC-F9"]= set_nomalmode
         keymap_vim["LC-F10"]= Vimmode_and_Reset
 
