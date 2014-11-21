@@ -259,6 +259,10 @@ def configure(keymap):
                 return True
             return False
 
+        #########################################################################
+        #各アプリケーション識別用関数
+        #########################################################################
+
         def isExcel(wnd):
             if wnd.getClassName().startswith("EXCEL"):
                 return True
@@ -713,6 +717,13 @@ def configure(keymap):
                 return True
             return False
 
+        def isEditorClass(wnd):
+            if ((wnd.getClassName() in (
+                "TRValGrid",
+                )) or
+                isWord(wnd)):
+                return True
+            return False
         ############################################################################
         # 文字変換
         ############################################################################
