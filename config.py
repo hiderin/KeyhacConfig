@@ -1015,7 +1015,7 @@ def configure(keymap):
             import time
             timer = time.clock
             dlt = 1000*(timer()-keymap_vim.esc_tmr)
-            if dlt < 200 :
+            if dlt < 300 :
                 keymap.command_InputKey("Esc")()
             else:
                 set_vimmode()
