@@ -903,11 +903,11 @@ def configure(keymap):
         @profile
         def set_vimmode(flg=1):
             set_imeoff()
-            keymap_vim.mainmode =1
-            mWnd = keymap.getWindow()
             vim_parm_reset()
-            if flg:
-                show_mode()
+            if keymap_vim.mainmode!=1:
+                keymap_vim.mainmode =1
+                if flg:
+                    show_mode()
 
         @profile
         def set_insertmode():
