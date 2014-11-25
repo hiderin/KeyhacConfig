@@ -719,7 +719,7 @@ def configure(keymap):
 
         def isEditorClass(wnd):
             if ((wnd.getClassName() in (
-                "TRValGrid",
+                "EditorClient",           #サクラエディタ
                 )) or
                 isWord(wnd)):
                 return True
