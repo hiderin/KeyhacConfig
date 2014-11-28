@@ -8,8 +8,6 @@ from keyhac import *
 ################################################################################
 # 追加したい機能のメモ
 #-------------------------------------------------------------------------------
-# ・クラスをテキスト編集クラスとそうでないクラスに分ける            [line-ctrl]
-# ・select_lineで行末の改行が含まれるかどうかのクラス分け           [line-ctrl]
 # ・挿入モードでLC-pで貼り付け                                      [i-paste]
 # ・M電卓を常に手前に表示した時のLC-0,LC-9のWindow切り替えの制御    [mden]
 # ・line単位でのコピー切り取り後の貼り付け処理が不十分              [line-ctrl]
@@ -261,6 +259,10 @@ def configure(keymap):
                                     "CkwWindowClass"):
                 return True
             return False
+
+        #########################################################################
+        #各アプリケーション識別用関数
+        #########################################################################
 
         def isExcel(wnd):
             if wnd.getClassName().startswith("EXCEL"):
@@ -716,6 +718,13 @@ def configure(keymap):
                 return True
             return False
 
+        def isEditorClass(wnd):
+            if ((wnd.getClassName() in (
+                "EditorClient",           #サクラエディタ
+                )) or
+                isWord(wnd)):
+                return True
+            return False
         ############################################################################
         # 文字変換
         ############################################################################
@@ -1121,7 +1130,7 @@ def configure(keymap):
             keymap.command_MouseWheel(-1.0)()
 
         def select_line():
-            if isWord(keymap.getWindow()):
+            if isEditorClass(keymap.getWindow()):
                 keymap.command_InputKey("S-Down")()
             else:
                 keymap.command_InputKey("S-End")()
@@ -1459,9 +1468,10 @@ def configure(keymap):
                 if key=="d":
                     keymap.command_InputKey("Home")()
                     repeat(select_line)()
-                    select_move(move_left)
+                    if isEditorClass(keymap.getWindow()):
+                        select_move(move_left)
                 elif select_move(move_method(key)):
-                    if key=="S-4":
+                    if key=="S-4" and isEditorClass(keymap.getWindow()):
                         select_move(move_left)
                 else:
                     rtn = 0
@@ -1494,8 +1504,10 @@ def configure(keymap):
                 if key=="c":
                     keymap.command_InputKey("Home")()
                     repeat(select_line)()
+                    if isEditorClass(keymap.getWindow()):
+                        select_move(move_left)
                 elif select_move(move_method(key)):
-                    if key=="S-4":
+                    if key=="S-4" and isEditorClass(keymap.getWindow()):
                         select_move(move_left)
                 else:
                     rtn = 0
