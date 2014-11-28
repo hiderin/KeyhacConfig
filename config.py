@@ -1129,7 +1129,7 @@ def configure(keymap):
             keymap.command_MouseWheel(-1.0)()
 
         def select_line():
-            if isWord(keymap.getWindow()):
+            if isEditorClass(keymap.getWindow()):
                 keymap.command_InputKey("S-Down")()
             else:
                 keymap.command_InputKey("S-End")()
@@ -1467,9 +1467,10 @@ def configure(keymap):
                 if key=="d":
                     keymap.command_InputKey("Home")()
                     repeat(select_line)()
-                    select_move(move_left)
+                    if isEditorClass(keymap.getWindow()):
+                        select_move(move_left)
                 elif select_move(move_method(key)):
-                    if key=="S-4":
+                    if key=="S-4" and isEditorClass(keymap.getWindow()):
                         select_move(move_left)
                 else:
                     rtn = 0
@@ -1502,8 +1503,10 @@ def configure(keymap):
                 if key=="c":
                     keymap.command_InputKey("Home")()
                     repeat(select_line)()
+                    if isEditorClass(keymap.getWindow()):
+                        select_move(move_left)
                 elif select_move(move_method(key)):
-                    if key=="S-4":
+                    if key=="S-4" and isEditorClass(keymap.getWindow()):
                         select_move(move_left)
                 else:
                     rtn = 0
