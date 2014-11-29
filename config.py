@@ -2450,4 +2450,3 @@ def configure(keymap):
 # keyhac起動後clunchも起動させる
     command_ActivateOrExecuteClunch(0)
     keymap.command_InputKey("ESC")()
-
