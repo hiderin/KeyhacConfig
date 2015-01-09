@@ -219,6 +219,7 @@ def configure(keymap):
             if wnd.getClassName() in ("Vim",                                        #Vim
                                     "CfilerWindowClass",                            #内骨格
                                     "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
+                                    "TFormMemberResultViewer",                      #Forum8の解析結果ウィンドウ
                                     "SunAwtFrame",                                  #Android Studio
                                     "TFormOutlineElementWizard",                    #Forum8のアウトライン入力ウィンドウ
                                     "TFormOutNew",                                  #Forum8断面算定のプレビューウィンドウ
