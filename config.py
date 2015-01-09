@@ -157,6 +157,7 @@ def configure(keymap):
 
         # クリップボード履歴
         keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # リスト表示
+        keymap_global[ "C-F7"    ] = keymap.command_ClipboardList     # リスト表示
         keymap_global[ "C-S-X"   ] = keymap.command_ClipboardRotate   # 直近の履歴を末尾に回す
         keymap_global[ "C-S-A-X" ] = keymap.command_ClipboardRemove   # 直近の履歴を削除
         keymap.quote_mark = "> "                                      # 引用貼り付け時の記号
