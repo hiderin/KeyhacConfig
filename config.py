@@ -622,6 +622,8 @@ def configure(keymap):
 
         # LC-Shiftの時間計測用変数
         keymap_vim.esc_tmr = 0
+        # LC-Shiftが押されたかどうかのフラグ
+        keymap_vim.esc_flg = 0
 
         ########################################################################
         # キーボードマクロの実装
@@ -1031,11 +1033,12 @@ def configure(keymap):
             import time
             timer = time.clock
             dlt = 1000*(timer()-keymap_vim.esc_tmr)
-            if dlt < 300 :
+            if dlt < 300 and keymap_vim.esc_flg:
                 keymap.command_InputKey("Esc")()
             else:
                 set_vimmode()
             keymap_vim.esc_tmr = timer()
+            keymap_vim.esc_flg = 1
 
         def input_tab():
             keymap.command_InputKey("Tab")()
@@ -2031,6 +2034,8 @@ def configure(keymap):
         def send_vimmodekey(ikey):
             if keymap_vim.flg_mcr == 1:
                 add_macro(ikey)
+            if ikey != "LC-RShift":
+                keymap_vim.esc_flg=0
             if ikey in '1234567890':
                 send_vim_num(CtoNum(ikey))()
             else:
