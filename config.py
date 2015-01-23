@@ -1237,6 +1237,9 @@ def configure(keymap):
         def insert_cells():
             keymap.command_InputKey("C-Add")()
 
+        def delete_cells():
+            keymap.command_InputKey("C-Subtract")()
+
         def window_only():
             keymap.command_InputKey("C-F10")()
 
@@ -1363,8 +1366,10 @@ def configure(keymap):
                 paste_value()
             elif keymap_vim.command_str == "preview":
                 print_preview()
-            elif keymap_vim.command_str == "insertcells":
+            elif keymap_vim.command_str == "inscells":
                 insert_cells()
+            elif keymap_vim.command_str == "delcells":
+                delete_cells()
             elif keymap_vim.command_str == "only":
                 window_only()
             elif keymap_vim.command_str == "outapplist":
