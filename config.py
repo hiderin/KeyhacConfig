@@ -9,7 +9,6 @@ from keyhac import *
 # 追加したい機能のメモ
 #-------------------------------------------------------------------------------
 # ・挿入モードでLC-pで貼り付け                                      [i-paste]
-# ・M電卓を常に手前に表示した時のLC-0,LC-9のWindow切り替えの制御    [mden]
 # ・line単位でのコピー切り取り後の貼り付け処理が不十分              [line-ctrl]
 # ・キーボードマクロをiniファイルに登録してマクロを流用する         [mcr-log]
 # ・リーピート回数のMAX値を決める、コマンドから可変にする。         [rpt-max]
@@ -242,7 +241,7 @@ def configure(keymap):
                                     "{0F04AF43-7B85-46A5-A0A7-6D323A84AD7C}",       #Asr
                                     "ThunderRT6MDIForm",                            #A9CAD
                                     "TPreViewForm",                                 #COSMOのプレビューウィンドウ
-                                    "TMdenMainForm",                                #M電卓
+#                                    "TMdenMainForm",                                #M電卓
                                     "CabinetWClass",                                #エクスプローラ ウィンドウ
                                     "TFormMain",                                    # フォーラム断面算定：
                                     "TextEditorWindow",                             # sakuraEditor
@@ -478,10 +477,7 @@ def configure(keymap):
                         if exetxt:
                             if cnt == num:
                                  #あふwは無視する
-                                if not (isAfwWindow(wnd) or
-                                        (wnd.getClassName() in (
-                                            "TMdenMainForm",
-                                            ))):
+                                if not (isAfwWindow(wnd)):
                                     ForegroundWindow(wnd)()
                                     return
                                 else:
