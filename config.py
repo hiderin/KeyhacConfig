@@ -2349,12 +2349,16 @@ def configure(keymap):
         keymap_ovim["LC-RShift"] = vim_input_esc()
         keymap_ovim["O-RShift"] = keymap.command_InputKey("Space")
         keymap_ovim["O-(236)"] = keymap.command_InputKey("Enter")
+        keymap_ovim["C-(236)"] = keymap.command_InputKey("C-Enter")
+        keymap_ovim["C-h"] = keymap.command_InputKey("Back")
 
         # for Console
         keymap_cnsl = keymap.defineWindowKeymap(class_name='ConsoleWindowClass')
         keymap_cnsl["LC-RShift"] = keymap.command_InputKey("ESC")
         keymap_cnsl["O-RShift"] = keymap.command_InputKey("Space")
         keymap_cnsl["O-(236)"] = keymap.command_InputKey("Enter")
+        keymap_cnsl["C-(236)"] = keymap.command_InputKey("C-Enter")
+        keymap_cnsl["C-h"] = keymap.command_InputKey("Back")
 ################################################################################
     # クリップボード履歴の最大数 (デフォルト:1000)
     keymap.clipboard_history.maxnum = 10000
