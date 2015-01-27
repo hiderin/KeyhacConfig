@@ -2140,7 +2140,7 @@ def configure(keymap):
 
         keymap_global[ "RC-F4" ] = command_ActivateOrExecuteClunch
 
-    if 1:
+    if 0:
         def command_ActivateOrExecuteCfilter():
             wnd = Window.find( "CfilerWindowClass", None)
             if wnd:
@@ -2155,6 +2155,20 @@ def configure(keymap):
         keymap_global[ "LC-F5" ] = command_ActivateOrExecuteCfilter
 
     if 1:
+        def command_ActivateOrExecuteVimFiler():
+            wnd = Window.find( "Vim", None)
+            if wnd:
+                if wnd.isMinimized():
+                    wnd.restore()
+                wnd = wnd.getLastActivePopup()
+                wnd.setForeground()
+            else:
+                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\vim73\\gvim.exe", '-c ":VimFilerDouble"', "" )
+                executeFunc()
+
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+
+    if 1:
         def command_ActivateOrExecuteAf():
             wnd = Window.find( "TAfxWForm", None)
             if wnd:
@@ -2167,9 +2181,9 @@ def configure(keymap):
                 executeFunc()
             set_vimmode(0)
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteAf
+        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteAf
 
-        keymap_global[ "U0-c" ] = command_ActivateOrExecuteCfilter
+        keymap_global[ "U0-c" ] = command_ActivateOrExecuteVimFiler
 
     if 1:
         def command_ActivateOrExecuteMCal():
