@@ -253,6 +253,7 @@ def configure(keymap):
                                     "TAIMPMainForm",                                #AIMP(ポータブルミュージックプレーヤー)
                                     "WMP Skin Host",                                #Windows Media Player
                                     "Outlook Express Browser Class",                #Outlook Express
+                                    "ATH_Note",                                     #Outlook Expressの新規メールWindow
                                     "DocuWorksViewerLightMainWindow",               #DocuWorksViewerLight
                                     "OpusApp",                                      #WORD
                                     "XLMAIN",                                       #EXCEL
