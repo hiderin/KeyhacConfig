@@ -554,7 +554,9 @@ def configure(keymap):
                                                  "Vim",                # Vim
                                                  "PuTTY",              # PuTTY
                                                  "SWT_Windows0",        # Eclipse
-                                                 "ConsoleWindowClass"        #ConsoleWindowClass
+                                                 "ConsoleWindowClass",        #ConsoleWindowClass
+                                                 "SmartVision Main Frame Window",        #スマートビジョン(デレビ)
+                                                 "SvUI SmartVision Parent Window"        #スマートビジョン(デレビ)
                                                  )
 
         keymap_vim = keymap.defineWindowKeymap(check_func=classname_is_vim)
