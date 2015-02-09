@@ -727,6 +727,7 @@ def configure(keymap):
         def isEditorClass(wnd):
             if ((wnd.getClassName() in (
                 "EditorClient",           #サクラエディタ
+                "VbaWindow",              #VBAクラス
                 )) or
                 isWord(wnd)):
                 return True
@@ -1301,6 +1302,14 @@ def configure(keymap):
             vim_parm_AllReset()
             set_vimmode()
 
+        def tag_stash():
+            if isVba(keymap.getWindow()):
+                keymap.command_InputKey("S-F2")()
+
+        def tag_pop():
+            if isVba(keymap.getWindow()):
+                keymap.command_InputKey("C-S-F2")()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1816,6 +1825,10 @@ def configure(keymap):
                         repeat(input_Space)()
                     elif ikey == "S-Tab":
                         repeat(input_stab)()
+                    elif ikey =="LC-CloseBracket":
+                        tag_stash()
+                    elif ikey =="RC-t":
+                        tag_pop()
                     elif ikey == "Enter":
                         ScrollBind(repeat(tenkey_enter))
                     elif (ikey == "g" or ikey =="d" or ikey=="y" or ikey=="c" or
