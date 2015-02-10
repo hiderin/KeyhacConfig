@@ -442,6 +442,7 @@ def configure(keymap):
                 applications2 = None
                 while wnd:
                     if isApp(wnd) and not isAfwWindow(wnd):
+                    #if wnd.isEnabled() and not isAfwWindow(wnd):
                         exetxt = wnd.getText()
                         if exetxt:
                             if wnd.getClassName()=="CabinetWClass":
@@ -477,6 +478,10 @@ def configure(keymap):
                 wnd = root.getFirstChild()
                 while wnd:
                     if isApp(wnd):
+                    #if wnd.isEnabled():
+                        wnd2 = wnd.getLastChild()
+                        if wnd2:
+                            wnd = wnd2
                         exetxt = wnd.getText()
                         if exetxt:
                             if cnt == num:
