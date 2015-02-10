@@ -229,6 +229,8 @@ def configure(keymap):
                                     "TINP_Hotai_Kui_Form",                          #Forum8杭基礎のデータ入力ウィンドウ
                                     "TFormF3DModelEditor",                          #Forum8フレーム3Dのデータ入力ウィンドウ
                                     "TFormAOCollectionEditor",                      #Forum8フレーム3Dのデータ入力ウィンドウ
+                                    "TFormSectionElementWizard",                    #Forum8フレーム3Dの断面編集ウィンドウ
+                                    "TFormSectionEditor",                           #Forum8フレーム3Dの断面編集ウィンドウ
                                     "AcrobatSDIWindow",                             #Adobe Reader
                                     "ThunderRT6FormDC",                             #座標点プロット Mk_Protxy
                                     "Afx:00400000:b:00010003:00000006:024E0449",    #mp3tag
