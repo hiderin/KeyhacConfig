@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import os
 import datetime
 
@@ -21,6 +21,9 @@ from keyhac import *
 # ・Shift-oによる改行-insertmodeを実装する。                        [main]
 # ・エクセルの表示・非表示のコマンドを追加する。                    [main]
 # ・word用のテンキーマクロも作成する                                [tenkey-mcr]
+# ・^M^L(C-v,C-m,C-l)で改ページの挿入                               [main]
+# ・SkkIme以外のImeでもC-Jでime-on,lでime-offにする。               [like-skk]
+# ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 ################################################################################
 
 ## 処理時間計測のデコレータ
@@ -719,6 +722,9 @@ def configure(keymap):
                 "TRValGrid",
                 "TF8Edit",
                 "Edit",
+                "F3 Server 60000000",       #Mightyのグリッド？
+                "MSFlexGridWndClass",       #Mightyのグリッド？
+                "RichTextWndClass",         #Mightyのグリッド？
                 "TInplaceEdit",             #Forum8のグリッド
                 "CRvgIntrEdit",             #TRValGridのセルのクラス
                 )) or
