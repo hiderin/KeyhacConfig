@@ -882,7 +882,7 @@ def configure(keymap):
                 keymap.command_InputKey("A-(243)")()
 
         # コマンドラインテスト用の切り替えフラグ
-        flg_commandline = 0
+        flg_commandline = 1
 
         if not flg_commandline:
             def show_command(cls=0):
@@ -894,35 +894,43 @@ def configure(keymap):
 
         if flg_commandline:
             def show_command(cls=0):
+                wnd = Window.find( "ClnchWindowClass", "CraftLaunch" )
+                if wnd:
+                    if wnd.isMinimized():
+                        wnd.restore()
+                    wnd = wnd.getLastActivePopup()
+                    wnd.setForeground()
+                commandstr=keymap_vim.command_str
+                shellExecute( None, "..\\clnch\\clnch.exe",'--text=":%s"'% commandstr, "" )
 
-                # 一度閉じて再表示
-                if keymap.isListWindowOpened():
-                    keymap.cancelListWindow()
-                    return
-
-                if cls:
-                    return
-
-#                command_NextApplication(0)()
-
-                def command_show_command():
-
-#                    applications2 = None
-
-                    applications2 = [(":" + keymap_vim.command_str, execute_command)]
-
-                    listers = [
-                        ( "Command Line",     cblister_FixedPhrase(applications2) )
-                    ]
-
-                    item, mod = keymap.popListWindow(listers)
-
-                    if item:
-                        item[1]()
-
-                # キーフックの中で時間のかかる処理を実行できないので、delayedCall() をつかって遅延実行する
-                keymap.delayedCall( command_show_command, 0 )
-
+#                # 一度閉じて再表示
+#                if keymap.isListWindowOpened():
+#                    keymap.cancelListWindow()
+#                    return
+#
+#                if cls:
+#                    return
+#
+##                command_NextApplication(0)()
+#
+#                def command_show_command():
+#
+##                    applications2 = None
+#
+#                    applications2 = [(":" + keymap_vim.command_str, execute_command)]
+#
+#                    listers = [
+#                        ( "Command Line",     cblister_FixedPhrase(applications2) )
+#                    ]
+#
+#                    item, mod = keymap.popListWindow(listers)
+#
+#                    if item:
+#                        item[1]()
+#
+#                # キーフックの中で時間のかかる処理を実行できないので、delayedCall() をつかって遅延実行する
+#                keymap.delayedCall( command_show_command, 0 )
+#
 
         @profile
         def set_nomalmode():
@@ -957,7 +965,8 @@ def configure(keymap):
         def set_commandmode():
             keymap_vim.mainmode =4
             keymap_vim.command_str = ""
-            show_mode()
+            show_command()
+            #show_mode()
 
         def set_fixinputmode():
             keymap_vim.flg_fixinput=1
