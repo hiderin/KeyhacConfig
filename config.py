@@ -1070,7 +1070,6 @@ def configure(keymap):
 
         def concat_line():
             keymap.command_InputKey("End")()
-            keymap.command_InputKey("Space")()
             keymap.command_InputKey("Delete")()
 
         def open_line():
