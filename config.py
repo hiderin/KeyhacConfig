@@ -2294,9 +2294,9 @@ def configure(keymap):
                 N = keymap_vim.tenkeycount+1
                 keymap_vim.tenkeycount =0
                 keymap.command_InputKey("Enter")()
-                keymap.command_InputKey("Right")()
                 for i in range(N):
                     keymap.command_InputKey("Up")()
+                keymap.command_InputKey("Right")()
             elif keymap_vim.tenkeymode ==3:
                 method_Atmark("S-Enter")()
 
