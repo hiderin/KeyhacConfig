@@ -225,6 +225,7 @@ def configure(keymap):
         def isConsoleWindow(wnd):
             if wnd.getClassName() in ("Vim",                                        #Vim
                                     "CfilerWindowClass",                            #内骨格
+                                    "Afx:00400000:8:00010011:00000000:00010783",    #リキュール
                                     "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
                                     "TFormMemberResultViewer",                      #Forum8の解析結果ウィンドウ
                                     "SunAwtFrame",                                  #Android Studio
