@@ -1320,6 +1320,10 @@ def configure(keymap):
             if isVba(keymap.getWindow()):
                 keymap.command_InputKey("C-S-F2")()
 
+        def exl_hide_row():
+            if isExcel(keymap.getWindow()):
+                keymap.command_InputKey("A-O","A-R","A-H")()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1409,6 +1413,8 @@ def configure(keymap):
                 set_fixinputmode()
             elif keymap_vim.command_str == "set nofixinput":
                 reset_fixinputmode()
+            elif keymap_vim.command_str == "hiderow":
+                exl_hide_row()
 
             show_command(1)
             keymap_vim.command_str = ""
