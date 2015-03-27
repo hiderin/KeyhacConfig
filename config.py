@@ -20,11 +20,13 @@ from keyhac import *
 # ・aでinsertModeに入った時にバルーンが表示されない。               [main]
 # ・Shift-oによる改行-insertmodeを実装する。                        [main]
 # ・エクセルの表示・非表示のコマンドを追加する。                    [main]
+# ・エクセルの並べ替えのコマンドを追加する。                        [main]
 # ・word用のテンキーマクロも作成する                                [tenkey-mcr]
 # ・^M^L(C-v,C-m,C-l)で改ページの挿入                               [main]
 # ・SkkIme以外のImeでもC-Jでime-on,lでime-offにする。               [like-skk]
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・clunchを使用したコマンドラインの実装                            [cmd-line]
+# ・テンキー+Ctrl or Altでテンキーの拡張                            [tenkey-ctrl]
 ################################################################################
 
 ## 処理時間計測のデコレータ
