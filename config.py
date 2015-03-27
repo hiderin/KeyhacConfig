@@ -477,6 +477,11 @@ def configure(keymap):
         def command_NextApplication(num):
 
             def _fanc():
+
+                #M電卓から呼び出された時はカウントを1減らす
+                if isMdentaku(keymap.getWindow()):
+                    num = num -1
+
                 root = pyauto.Window.getDesktop()
                 cnt =0
 
