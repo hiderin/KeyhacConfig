@@ -103,13 +103,13 @@ def configure(keymap):
 
     # プログラムのファイルパスを設定 (単純な使用方法)
     if 0:
-        keymap.editor = "..\\portvim\\vim73\\gvim.bat"
+        keymap.editor = "..\\portvim\\gvim.bat"
 
     # 呼び出し可能オブジェクトを設定 (高度な使用方法)
     if 1:
         @profile
         def editor(path):
-            shellExecute( None, "..\\portvim\\vim73\\gvim.exe", '--remote-silent "%s"'% path, "" )
+            shellExecute( None, "..\\portvim\\gvim.exe", '--remote-silent "%s"'% path, "" )
         keymap.editor = editor
 
     # --------------------------------------------------------------------
@@ -2196,7 +2196,7 @@ def configure(keymap):
                 wnd = wnd.getLastActivePopup()
                 wnd.setForeground()
             else:
-                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\vim73\\gvim.exe", '-c ":VimFilerDouble"', "" )
+                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
         keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
