@@ -477,8 +477,13 @@ def configure(keymap):
         def command_NextApplication(num):
 
             def _fanc():
+
                 root = pyauto.Window.getDesktop()
                 cnt =0
+
+                #M電卓から呼び出された時はカウントを1進めておく
+                if isMdentaku(keymap.getWindow()):
+                    cnt = 1
 
                 wnd = root.getFirstChild()
                 while wnd:
