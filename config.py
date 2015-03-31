@@ -291,7 +291,7 @@ def configure(keymap):
             return False
 
         def isMdentaku(wnd):
-            if wnd.getClassName().startswith("TMdenMainForm"):
+            if keymap.getTopLevelWindow().getClassName().startswith("TMdenMainForm"):
                 return True
             return False
 
