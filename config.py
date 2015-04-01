@@ -27,7 +27,6 @@ from keyhac import *
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・clunchを使用したコマンドラインの実装                            [cmd-line]
 # ・テンキー+Ctrl or Altでテンキーの拡張                            [tenkey-ctrl]
-# ・ emacs風のカーソル移動をserchモードに導入する                   [main]
 ################################################################################
 
 ## 処理時間計測のデコレータ
@@ -1907,12 +1906,16 @@ def configure(keymap):
             elif keymap_vim.mainmode==2:
                 if ikey == "RC-f":
                     move_right()
-                elif ikey == "RC-b":
-                    move_left()
                 elif ikey == "LC-b":
                     move_left()
+                elif ikey == "LC-n":
+                    move_down()
                 elif ikey == "LC-p":
-                    paste()
+                    move_up()
+                elif ikey =="RC-a":
+                    move_line_top()
+                elif ikey =="RC-e":
+                    move_line_end()
                 elif ikey == "Esc":
                     set_vimmode()
                     keymap_vim.flg_cf_mode = 1
@@ -2028,6 +2031,18 @@ def configure(keymap):
                         keymap.command_InputKey("Enter")()
                     keymap.command_InputKey(ikey)()
                     set_vimmode()
+                elif ikey =="LC-p":
+                    move_up()
+                elif ikey =="LC-n":
+                    move_down()
+                elif ikey =="RC-f":
+                    move_right()
+                elif ikey =="LC-b":
+                    move_left()
+                elif ikey =="RC-a":
+                    move_line_top()
+                elif ikey =="RC-e":
+                    move_line_end()
                 elif ikey == "LC-j":
                     mWnd = keymap.getWindow()
                     if mWnd.getImeStatus()==0:
