@@ -29,6 +29,12 @@ from keyhac import *
 # ・テンキー+Ctrl or Altでテンキーの拡張                            [tenkey-ctrl]
 ################################################################################
 
+# 日時をペーストする機能
+def dateAndTime(fmt):
+    def _dateAndTime():
+        return datetime.datetime.now().strftime(fmt)
+    return _dateAndTime
+
 ## 処理時間計測のデコレータ
 def profile(func):
     import functools
@@ -40,7 +46,7 @@ def profile(func):
         t0 = timer()
         ret = func(*args, **kw)
         if 1000*(timer()-t0) >100:
-            print( '%s: %.3f [ms] elapsed' % (func.__name__, 1000 * (timer() - t0)))
+            print( '%s: %.3f [ms] elapsed %s' % (func.__name__, 1000 * (timer() - t0),dateAndTime("%H:%M:%S")()))
         return ret
     return _profile
 
@@ -2423,7 +2429,6 @@ def configure(keymap):
 
     # クリップボード履歴リスト表示のカスタマイズ
     if 1:
-        import datetime
 
         # 定型文
         fixed_items = [
@@ -2434,17 +2439,10 @@ def configure(keymap):
             ( "ReLoad config.py",  keymap.command_ReloadConfig ),
         ]
 
-        # 日時をペーストする機能
-        def dateAndTime(fmt):
-            def _dateAndTime():
-                return datetime.datetime.now().strftime(fmt)
-            return _dateAndTime
-
         # 日時
         date_and_time_items = [
             ( "YYYY/MM/DD HH:MM:SS",   dateAndTime("%Y/%m/%d %H:%M:%S") ),
             ( "YYYY/MM/DD",            dateAndTime("%Y/%m/%d") ),
-            ( "HH:MM:SS",              dateAndTime("%H:%M:%S") ),
             ( "YYYYMMDD_HHMMSS",       dateAndTime("%Y%m%d_%H%M%S") ),
             ( "YYYYMMDD",              dateAndTime("%Y%m%d") ),
             ( "HHMMSS",                dateAndTime("%H%M%S") ),
