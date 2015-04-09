@@ -1246,6 +1246,11 @@ def configure(keymap):
                 keymap.command_InputKey("Enter")()
 
         @profile
+        def docu_warituke():
+            if isDocuWorks(keymap.getWindow()):
+                keymap.command_InputKey("A-t","A-0","A-2")()
+
+        @profile
         def paste_value():
             keymap.command_InputKey("D-Alt")()
             keymap.command_InputKey("E","S","V")()
@@ -1399,6 +1404,8 @@ def configure(keymap):
                 window_vs_this()
             elif keymap_vim.command_str == "sp":
                 window_sp()
+            elif keymap_vim.command_str == "wari":
+                docu_warituke()
             elif keymap_vim.command_str == "pstv":
                 paste_value()
             elif keymap_vim.command_str == "preview":
