@@ -2293,6 +2293,7 @@ def configure(keymap):
 ################################################################################
 #   テンキーのカスタマイズ
 ################################################################################
+
     if 1:
 
         keymap_vim.tenkeymode =0
@@ -2360,10 +2361,17 @@ def configure(keymap):
 
         # キーの単純な置き換え
         keymap.replaceKey( "Enter", 236 )
+        keymap.replaceKey( "Right", 237 )
+        #keymap.replaceKey( "Down", 237 )
 
         # ユーザモディファイアキーの定義
         keymap.defineModifier( 236, "User1" )
 
+        # ユーザモディファイアキーの定義
+        keymap.defineModifier( 237, "User2" )
+
+        keymap_vim["O-(237)"]=keymap.command_InputKey("Space")
+        keymap_vim["U2-Num4"]=keymap.command_InputKey("S-Tab")
 #        keymap_vim["O-(236)"]=tenkey_enter
 
         keymap_vim["U1-Num4"]=tenkey_reset
