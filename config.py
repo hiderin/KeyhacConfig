@@ -27,7 +27,6 @@ from keyhac import *
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・clunchを使用したコマンドラインの実装                            [cmd-line]
 # ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
-# ・visual-modeからマクロの記録・実行が出来ない                     [main]
 ################################################################################
 
 # 日時をペーストする機能
@@ -2008,7 +2007,7 @@ def configure(keymap):
                             set_insertmode()
                     elif ikey == "Colon":
                         set_commandmode()
-                    elif (ikey == "g" or ikey == "z"):
+                    elif (ikey == "g" or ikey == "z" or ikey == "q" or ikey == "Atmark"):
                         select_method(ikey)
                     elif isCtrlAlt(ikey):
                         keymap.command_InputKey(ikey)()
