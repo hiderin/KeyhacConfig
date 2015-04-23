@@ -1500,6 +1500,8 @@ def configure(keymap):
                     ScrollBind(move_bufend)
                 elif ikey == "Caret":
                     ScrollBind(move_line_top)
+                elif ikey == "0":
+                    ScrollBind(move_line_top)
                 elif ikey == "S-4":
                     ScrollBind(move_line_end)
                 else:
@@ -2129,7 +2131,10 @@ def configure(keymap):
                 if keymap_vim.mainmode==0 or keymap_vim.mainmode==2 or keymap_vim.mainmode==5:
                     keymap.command_InputKey(str(num))()
                 else:
-                    keymap_vim.repeatN = keymap_vim.repeatN*10 + num
+                    if num==0 and keymap_vim.repeatN==0:
+                        vim_command_InputKey("0")
+                    else:
+                        keymap_vim.repeatN = keymap_vim.repeatN*10 + num
             return _fanc
 
         ########################################################################
