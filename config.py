@@ -21,6 +21,7 @@ from keyhac import *
 # ・Shift-oによる改行-insertmodeを実装する。                        [main]
 # ・エクセルの表示・非表示のコマンドを追加する。                    [main]
 # ・エクセルの並べ替えのコマンドを追加する。                        [main]
+# ・矩形選択モードがらインサートモードに入れない。                  [main]
 # ・word用のテンキーマクロも作成する                                [tenkey-mcr]
 # ・^M^L(C-v,C-m,C-l)で改ページの挿入                               [main]
 # ・SkkIme以外のImeでもC-Jでime-on,lでime-offにする。               [like-skk]
