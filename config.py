@@ -870,21 +870,24 @@ def configure(keymap):
         ########################################################################
         @profile
         def show_mode():
-            mode = "Err"
-            if keymap_vim.mainmode==0:
-                mode = "Nomal Mode"
-            elif keymap_vim.mainmode==1:
-                mode = "Vim Mode"
-            elif keymap_vim.mainmode==2:
-                mode = "Insert Mode"
-            elif keymap_vim.mainmode==3:
-                mode = "Visual Mode"
-            elif keymap_vim.mainmode==4:
-                mode = "Command Mode"
-            elif keymap_vim.mainmode==5:
-                mode = "Search Mode"
+            if 0:
+                mode = "Err"
+                if keymap_vim.mainmode==0:
+                    mode = "Nomal Mode"
+                elif keymap_vim.mainmode==1:
+                    mode = "Vim Mode"
+                elif keymap_vim.mainmode==2:
+                    mode = "Insert Mode"
+                elif keymap_vim.mainmode==3:
+                    mode = "Visual Mode"
+                elif keymap_vim.mainmode==4:
+                    mode = "Command Mode"
+                elif keymap_vim.mainmode==5:
+                    mode = "Search Mode"
+                keymap.popBalloon("mode",mode,1000)
+            else:
+                shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmod;%d'% keymap_vim.mainmode, "" )
 
-            keymap.popBalloon("mode",mode,1000)
 
 #        @job_queue
         @profile
@@ -898,7 +901,7 @@ def configure(keymap):
                 keymap.command_InputKey("A-(243)")()
 
         # コマンドラインテスト用の切り替えフラグ
-        flg_commandline = 1
+        flg_commandline = 0
 
         if not flg_commandline:
             def show_command(cls=0):
@@ -2036,6 +2039,7 @@ def configure(keymap):
             elif keymap_vim.mainmode==4:
                 if (ikey == "Esc" or ikey =="LC-RShift"):
                     keymap_vim.command_str = ""
+                    show_command(1)
                     set_vimmode()
                 elif ikey == "Enter":
                     if flg_commandline:
