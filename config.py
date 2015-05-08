@@ -713,10 +713,11 @@ def configure(keymap):
         def toggle_imemode():
             if keymap_vim.flg_imemode:
                 keymap_vim.flg_imemode=0
-                keymap.popBalloon("mode","日本語入力固定モード OFF",1000)
+#                keymap.popBalloon("mode","日本語入力固定モード OFF",1000)
             else:
                 keymap_vim.flg_imemode=1
-                keymap.popBalloon("mode","日本語入力固定モード ON",1000)
+#                keymap.popBalloon("mode","日本語入力固定モード ON",1000)
+            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setime;%d'% keymap_vim.flg_imemode, "" )
 
         ############################################################################
         # 特定の機能を制御するクラス
