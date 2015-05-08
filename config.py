@@ -20,12 +20,21 @@ from keyhac import *
 # ・aでinsertModeに入った時にバルーンが表示されない。               [main]
 # ・Shift-oによる改行-insertmodeを実装する。                        [main]
 # ・エクセルの表示・非表示のコマンドを追加する。                    [main]
+# ・エクセルの並べ替えのコマンドを追加する。                        [main]
+# ・矩形選択モードがらインサートモードに入れない。                  [main]
 # ・word用のテンキーマクロも作成する                                [tenkey-mcr]
 # ・^M^L(C-v,C-m,C-l)で改ページの挿入                               [main]
 # ・SkkIme以外のImeでもC-Jでime-on,lでime-offにする。               [like-skk]
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・clunchを使用したコマンドラインの実装                            [cmd-line]
+# ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
 ################################################################################
+
+# 日時をペーストする機能
+def dateAndTime(fmt):
+    def _dateAndTime():
+        return datetime.datetime.now().strftime(fmt)
+    return _dateAndTime
 
 ## 処理時間計測のデコレータ
 def profile(func):
@@ -38,7 +47,7 @@ def profile(func):
         t0 = timer()
         ret = func(*args, **kw)
         if 1000*(timer()-t0) >100:
-            print( '%s: %.3f [ms] elapsed' % (func.__name__, 1000 * (timer() - t0)))
+            print( '%s: %.3f [ms] elapsed %s' % (func.__name__, 1000 * (timer() - t0),dateAndTime("%H:%M:%S")()))
         return ret
     return _profile
 
@@ -103,13 +112,13 @@ def configure(keymap):
 
     # プログラムのファイルパスを設定 (単純な使用方法)
     if 0:
-        keymap.editor = "..\\portvim\\vim73\\gvim.bat"
+        keymap.editor = "..\\portvim\\gvim.bat"
 
     # 呼び出し可能オブジェクトを設定 (高度な使用方法)
     if 1:
         @profile
         def editor(path):
-            shellExecute( None, "..\\portvim\\vim73\\gvim.exe", '--remote-silent "%s"'% path, "" )
+            shellExecute( None, "..\\portvim\\gvim.exe", '--remote-silent "%s"'% path, "" )
         keymap.editor = editor
 
     # --------------------------------------------------------------------
@@ -225,6 +234,8 @@ def configure(keymap):
         def isConsoleWindow(wnd):
             if wnd.getClassName() in ("Vim",                                        #Vim
                                     "CfilerWindowClass",                            #内骨格
+                                    "js:TARO10",                                    #一太郎
+                                    "Afx:00400000:8:00010011:00000000:00010783",    #リキュール
                                     "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
                                     "TFormMemberResultViewer",                      #Forum8の解析結果ウィンドウ
                                     "SunAwtFrame",                                  #Android Studio
@@ -287,7 +298,7 @@ def configure(keymap):
             return False
 
         def isMdentaku(wnd):
-            if wnd.getClassName().startswith("TMdenMainForm"):
+            if keymap.getTopLevelWindow().getClassName().startswith("TMdenMainForm"):
                 return True
             return False
 
@@ -476,8 +487,13 @@ def configure(keymap):
         def command_NextApplication(num):
 
             def _fanc():
+
                 root = pyauto.Window.getDesktop()
                 cnt =0
+
+                #M電卓から呼び出された時はカウントを1進めておく
+                if isMdentaku(keymap.getWindow()):
+                    cnt = 1
 
                 wnd = root.getFirstChild()
                 while wnd:
@@ -1079,7 +1095,6 @@ def configure(keymap):
 
         def concat_line():
             keymap.command_InputKey("End")()
-            keymap.command_InputKey("Space")()
             keymap.command_InputKey("Delete")()
 
         def open_line():
@@ -1241,6 +1256,11 @@ def configure(keymap):
                 keymap.command_InputKey("Enter")()
 
         @profile
+        def docu_warituke():
+            if isDocuWorks(keymap.getWindow()):
+                keymap.command_InputKey("A-t","A-0","A-2")()
+
+        @profile
         def paste_value():
             keymap.command_InputKey("D-Alt")()
             keymap.command_InputKey("E","S","V")()
@@ -1329,6 +1349,10 @@ def configure(keymap):
             if isVba(keymap.getWindow()):
                 keymap.command_InputKey("C-S-F2")()
 
+        def exl_hide_row():
+            if isExcel(keymap.getWindow()):
+                keymap.command_InputKey("A-O","A-R","A-H")()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1390,6 +1414,8 @@ def configure(keymap):
                 window_vs_this()
             elif keymap_vim.command_str == "sp":
                 window_sp()
+            elif keymap_vim.command_str == "wari":
+                docu_warituke()
             elif keymap_vim.command_str == "pstv":
                 paste_value()
             elif keymap_vim.command_str == "preview":
@@ -1418,6 +1444,8 @@ def configure(keymap):
                 set_fixinputmode()
             elif keymap_vim.command_str == "set nofixinput":
                 reset_fixinputmode()
+            elif keymap_vim.command_str == "hiderow":
+                exl_hide_row()
 
             show_command(1)
             keymap_vim.command_str = ""
@@ -1481,6 +1509,8 @@ def configure(keymap):
                 elif ikey == "S-g":
                     ScrollBind(move_bufend)
                 elif ikey == "Caret":
+                    ScrollBind(move_line_top)
+                elif ikey == "0":
                     ScrollBind(move_line_top)
                 elif ikey == "S-4":
                     ScrollBind(move_line_end)
@@ -1902,12 +1932,16 @@ def configure(keymap):
             elif keymap_vim.mainmode==2:
                 if ikey == "RC-f":
                     move_right()
-                elif ikey == "RC-b":
-                    move_left()
                 elif ikey == "LC-b":
                     move_left()
+                elif ikey == "LC-n":
+                    move_down()
                 elif ikey == "LC-p":
-                    paste()
+                    move_up()
+                elif ikey =="RC-a":
+                    move_line_top()
+                elif ikey =="RC-e":
+                    move_line_end()
                 elif ikey == "Esc":
                     set_vimmode()
                     keymap_vim.flg_cf_mode = 1
@@ -1985,7 +2019,7 @@ def configure(keymap):
                             set_insertmode()
                     elif ikey == "Colon":
                         set_commandmode()
-                    elif (ikey == "g" or ikey == "z"):
+                    elif (ikey == "g" or ikey == "z" or ikey == "q" or ikey == "Atmark"):
                         select_method(ikey)
                     elif isCtrlAlt(ikey):
                         keymap.command_InputKey(ikey)()
@@ -2023,6 +2057,18 @@ def configure(keymap):
                         keymap.command_InputKey("Enter")()
                     keymap.command_InputKey(ikey)()
                     set_vimmode()
+                elif ikey =="LC-p":
+                    move_up()
+                elif ikey =="LC-n":
+                    move_down()
+                elif ikey =="RC-f":
+                    move_right()
+                elif ikey =="LC-b":
+                    move_left()
+                elif ikey =="RC-a":
+                    move_line_top()
+                elif ikey =="RC-e":
+                    move_line_end()
                 elif ikey == "LC-j":
                     mWnd = keymap.getWindow()
                     if mWnd.getImeStatus()==0:
@@ -2095,7 +2141,10 @@ def configure(keymap):
                 if keymap_vim.mainmode==0 or keymap_vim.mainmode==2 or keymap_vim.mainmode==5:
                     keymap.command_InputKey(str(num))()
                 else:
-                    keymap_vim.repeatN = keymap_vim.repeatN*10 + num
+                    if num==0 and keymap_vim.repeatN==0:
+                        vim_command_InputKey("0")
+                    else:
+                        keymap_vim.repeatN = keymap_vim.repeatN*10 + num
             return _fanc
 
         ########################################################################
@@ -2199,7 +2248,7 @@ def configure(keymap):
                 wnd = wnd.getLastActivePopup()
                 wnd.setForeground()
             else:
-                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\vim73\\gvim.exe", '-c ":VimFilerDouble"', "" )
+                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
         keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
@@ -2304,9 +2353,9 @@ def configure(keymap):
                 N = keymap_vim.tenkeycount+1
                 keymap_vim.tenkeycount =0
                 keymap.command_InputKey("Enter")()
-                keymap.command_InputKey("Right")()
                 for i in range(N):
                     keymap.command_InputKey("Up")()
+                keymap.command_InputKey("Right")()
             elif keymap_vim.tenkeymode ==3:
                 method_Atmark("S-Enter")()
 
@@ -2402,7 +2451,6 @@ def configure(keymap):
 
     # クリップボード履歴リスト表示のカスタマイズ
     if 1:
-        import datetime
 
         # 定型文
         fixed_items = [
@@ -2413,17 +2461,10 @@ def configure(keymap):
             ( "ReLoad config.py",  keymap.command_ReloadConfig ),
         ]
 
-        # 日時をペーストする機能
-        def dateAndTime(fmt):
-            def _dateAndTime():
-                return datetime.datetime.now().strftime(fmt)
-            return _dateAndTime
-
         # 日時
         date_and_time_items = [
             ( "YYYY/MM/DD HH:MM:SS",   dateAndTime("%Y/%m/%d %H:%M:%S") ),
             ( "YYYY/MM/DD",            dateAndTime("%Y/%m/%d") ),
-            ( "HH:MM:SS",              dateAndTime("%H:%M:%S") ),
             ( "YYYYMMDD_HHMMSS",       dateAndTime("%Y%m%d_%H%M%S") ),
             ( "YYYYMMDD",              dateAndTime("%Y%m%d") ),
             ( "HHMMSS",                dateAndTime("%H%M%S") ),
