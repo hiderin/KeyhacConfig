@@ -902,7 +902,7 @@ def configure(keymap):
                 keymap.command_InputKey("A-(243)")()
 
         # コマンドラインテスト用の切り替えフラグ
-        flg_commandline = 0
+        flg_commandline = 1
 
         if not flg_commandline:
             def show_command(cls=0):
@@ -914,14 +914,8 @@ def configure(keymap):
 
         if flg_commandline:
             def show_command(cls=0):
-                wnd = Window.find( "ClnchWindowClass", "CraftLaunch" )
-                if wnd:
-                    if wnd.isMinimized():
-                        wnd.restore()
-                    wnd = wnd.getLastActivePopup()
-                    wnd.setForeground()
                 commandstr=keymap_vim.command_str
-                shellExecute( None, "..\\clnch\\clnch.exe",'--text=":%s"'% commandstr, "" )
+                shellExecute( None, "..\\clnch\\clnch.exe",'--execute="inpcmd;%s"'% commandstr, "" )
 
 #                # 一度閉じて再表示
 #                if keymap.isListWindowOpened():
@@ -1454,7 +1448,7 @@ def configure(keymap):
             show_command(1)
             keymap_vim.command_str = ""
             if keymap_vim.mainmode==4:
-                set_vimmode(0)
+                set_vimmode(1)
 
 
         @profile
@@ -2043,10 +2037,7 @@ def configure(keymap):
                     show_command(1)
                     set_vimmode()
                 elif ikey == "Enter":
-                    if flg_commandline:
-                        keymap.command_InputKey("Enter")()
-                    else:
-                        execute_command()
+                    execute_command()
                 elif ikey == "Back":
                     back_commandchar()
                 else:
