@@ -1445,7 +1445,7 @@ def configure(keymap):
             elif keymap_vim.command_str == "hiderow":
                 exl_hide_row()
 
-            show_command(1)
+            #show_command(1)
             keymap_vim.command_str = ""
             if keymap_vim.mainmode==4:
                 set_vimmode(1)
