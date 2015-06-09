@@ -1351,6 +1351,18 @@ def configure(keymap):
             if isExcel(keymap.getWindow()):
                 keymap.command_InputKey("A-O","A-R","A-H")()
 
+        def exl_hide_col():
+            if isExcel(keymap.getWindow()):
+                keymap.command_InputKey("A-O","A-C","A-H")()
+
+        def exl_show_row():
+            if isExcel(keymap.getWindow()):
+                keymap.command_InputKey("A-O","A-R","A-U")()
+
+        def exl_show_col():
+            if isExcel(keymap.getWindow()):
+                keymap.command_InputKey("A-O","A-C","A-U")()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1444,6 +1456,12 @@ def configure(keymap):
                 reset_fixinputmode()
             elif keymap_vim.command_str == "hiderow":
                 exl_hide_row()
+            elif keymap_vim.command_str == "hidecol":
+                exl_hide_col()
+            elif keymap_vim.command_str == "showrow":
+                exl_show_row()
+            elif keymap_vim.command_str == "showcol":
+                exl_show_col()
 
             #show_command(1)
             keymap_vim.command_str = ""
