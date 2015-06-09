@@ -2115,6 +2115,7 @@ def configure(keymap):
                 ichar.startswith("C-") or
                 ichar.startswith("D-Alt") or
                 ichar.startswith("U-Alt") or
+                ichar.startswith("A-C-") or
                 ichar.startswith("Alt-") ):
                 return True
             return False
@@ -2173,6 +2174,7 @@ def configure(keymap):
             keymap_vim["RC-"+exc_char(key)]      = send_vim_key("RC-"+exc_char(key))
             keymap_vim["Alt-"+exc_char(key)]      = send_vim_key("Alt-"+exc_char(key))
             keymap_vim["C-S-"+exc_char(key)]      = send_vim_key("C-S-"+exc_char(key))
+            keymap_vim["A-C-"+exc_char(key)]      = send_vim_key("A-C-"+exc_char(key))
 
         keymap_vim["O-RShift"] = send_vim_key("Space")
         keymap_vim["O-(236)"] = send_vim_key("Enter")
