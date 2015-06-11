@@ -232,7 +232,8 @@ def configure(keymap):
 
         @profile
         def isConsoleWindow(wnd):
-            if wnd.getClassName() in ("Vim",                                        #Vim
+            if wnd.getClassName() in (
+#                                    "Vim",                                        #Vim
                                     "CfilerWindowClass",                            #内骨格
                                     "js:TARO10",                                    #一太郎
                                     "Afx:00400000:8:00010011:00000000:00010783",    #リキュール
