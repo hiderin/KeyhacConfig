@@ -639,6 +639,7 @@ def configure(keymap):
             keymap_vim.flg_mcr =0
             keymap_vim.flg_scroll=0
             keymap_vim.flg_Mdentaku=0
+            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmcr;0', "" )
 
     ############################################################################
     # Vim_Init 変数の初期化
@@ -675,11 +676,13 @@ def configure(keymap):
                 keymap_vim.mcr_string[num] = None
                 keymap_vim.mcr_count[num] = 0
                 keymap_vim.flg_mcr = 1
-                keymap.popBalloon("mode","キーボードマクロ記録開始",1000)
+                shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmcr;1', "" )
+#                keymap.popBalloon("mode","キーボードマクロ記録開始",1000)
 
             def stop_rec():
                 keymap_vim.flg_mcr = 0
-                keymap.popBalloon("mode","キーボードマクロ記録終了",1000)
+                shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmcr;0', "" )
+#                keymap.popBalloon("mode","キーボードマクロ記録終了",1000)
 
             def add_macro(ckey):
                 num = keymap_vim.mcr_num
