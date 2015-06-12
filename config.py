@@ -1,6 +1,7 @@
 import sys
 import os
 import datetime
+import keyhac_ini
 
 import pyauto
 from keyhac import *
