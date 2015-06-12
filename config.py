@@ -659,13 +659,6 @@ def configure(keymap):
             # 記録中のマクロ番号
             keymap_vim.mcr_num =0
 
-            # キーボードマクロの初期化
-            keymap_vim.mcr_string = [(None)]
-            keymap_vim.mcr_count = [(0)]
-            for ic in range(30):
-                keymap_vim.mcr_string += [(None)]
-                keymap_vim.mcr_count += [(0)]
-
             def start_rec(num):
                 keymap_vim.mcr_num = num
                 keymap_vim.mcr_string[num] = None
@@ -676,6 +669,7 @@ def configure(keymap):
 
             def stop_rec():
                 keymap_vim.flg_mcr = 0
+                write_ini_mcr(keymap_vim.mcr_num)
                 shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmcr;0', "" )
 #                keymap.popBalloon("mode","キーボードマクロ記録終了",1000)
 
@@ -699,6 +693,7 @@ def configure(keymap):
                     keymap_vim.flg_mcr = 0
                 return _fanc
 
+            # キーボードマクロのiniファイルからの読み込み
             def read_ini_mcr(num):
                 sect = "mcr"+str(num)
                 keymap_vim.mcr_count[num] = keyhac_ini.getint(sect,"cnt",0)
@@ -707,13 +702,23 @@ def configure(keymap):
                     for i in range(keymap_vim.mcr_count[num]-1):
                         keymap_vim.mcr_string[num][i] = keyhac_ini.get(sect,str(i))
 
+            # キーボードマクロのiniファイルへの書き込み
             def write_ini_mcr(num):
                 sect = "mcr"+str(num)
+                keyhac_ini.remove_section(sect)
                 keyhac_ini.setint(sect,"cnt",keymap_vim.mcr_count[num])
                 i = 0
                 if keymap_vim.mcr_string[num]:
                     for i in range(keymap_vim.mcr_count[num]-1):
                         keyhac_ini.set(sect,str(i),keymap_vim.mcr_string[num][i])
+
+            # キーボードマクロの初期化
+            keymap_vim.mcr_string = [(None)]
+            keymap_vim.mcr_count = [(0)]
+            for ic in range(30):
+                keymap_vim.mcr_string += [(None)]
+                keymap_vim.mcr_count += [(0)]
+                read_ini_mcr(ic)
 
         ########################################################################
         # IMEの切替え
