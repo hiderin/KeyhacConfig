@@ -706,8 +706,14 @@ def configure(keymap):
                 if keymap_vim.mcr_string[num]:
                     for i in range(keymap_vim.mcr_count[num]-1):
                         keymap_vim.mcr_string[num][i] = keyhac_ini.get(sect,str(i))
-                keymap_vim.flg_mcr = 0
 
+            def write_ini_mcr(num):
+                sect = "mcr"+str(num)
+                keyhac_ini.setint(sect,"cnt",keymap_vim.mcr_count[num])
+                i = 0
+                if keymap_vim.mcr_string[num]:
+                    for i in range(keymap_vim.mcr_count[num]-1):
+                        keyhac_ini.set(sect,str(i),keymap_vim.mcr_string[num][i])
 
         ########################################################################
         # IMEの切替え
