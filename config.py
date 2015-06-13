@@ -697,25 +697,29 @@ def configure(keymap):
             # キーボードマクロのiniファイルからの読み込み
             def read_ini_mcr(num):
                 sect = "mcr"+str(num)+"_"
-                keymap_vim.mcr_count[num] = keyhac_ini.getint("GLOBAL",sect+"cnt",0)
+                counter = keyhac_ini.getint("GLOBAL",sect+"cnt",0)
                 i = 0
-                if keymap_vim.mcr_string[num]:
-                    for i in range(keymap_vim.mcr_count[num]-1):
-                        keymap_vim.mcr_string[num][i] = keyhac_ini.get("GLOBAL",sect+str(i))
+                print(sect+" read cnt="+str(counter))
+                if counter:
+                    for i in range(counter):
+                        add_macro(keyhac_ini.get("GLOBAL",sect+str(i),"null"))
 
             # キーボードマクロのiniファイルへの書き込み
             def write_ini_mcr(num):
                 sect = "mcr"+str(num)+"_"
                 keyhac_ini.setint("GLOBAL",sect+"cnt",keymap_vim.mcr_count[num])
                 i = 0
-                if keymap_vim.mcr_string[num]:
-                    for i in range(keymap_vim.mcr_count[num]-1):
+                print(sect+" cnt="+str(keymap_vim.mcr_count[num]))
+                if keymap_vim.mcr_count[num]:
+                    for i in range(keymap_vim.mcr_count[num]):
                         keyhac_ini.set("GLOBAL",sect+str(i),keymap_vim.mcr_string[num][i])
+                keyhac_ini.write()
 
             # キーボードマクロの初期化
             keymap_vim.mcr_string = [(None)]
             keymap_vim.mcr_count = [(0)]
             for ic in range(30):
+                keymap_vim.mcr_num = ic
                 keymap_vim.mcr_string += [(None)]
                 keymap_vim.mcr_count += [(0)]
                 read_ini_mcr(ic)
