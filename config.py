@@ -707,6 +707,7 @@ def configure(keymap):
             # キーボードマクロのiniファイルへの書き込み
             def write_ini_mcr(num):
                 sect = "mcr"+str(num)+"_"
+                delete_ini_mcr(sect)
                 keyhac_ini.setint("GLOBAL",sect+"cnt",keymap_vim.mcr_count[num])
                 i = 0
                 print(sect+" cnt="+str(keymap_vim.mcr_count[num]))
@@ -714,6 +715,14 @@ def configure(keymap):
                     for i in range(keymap_vim.mcr_count[num]):
                         keyhac_ini.set("GLOBAL",sect+str(i),keymap_vim.mcr_string[num][i])
                 keyhac_ini.write()
+
+            # キーボードマクロのiniファイルからの削除
+            def delete_ini_mcr(sect):
+                counter = keyhac_ini.getint("GLOBAL",sect+"cnt",0)
+                if counter:
+                    for i in range(counter):
+                        keyhac_ini.remove_option("GLOBAL",sect+str(i))
+                    keyhac_ini.remove_option("GLOBAL",sect+"cnt")
 
             # キーボードマクロの初期化
             keymap_vim.mcr_string = [(None)]
