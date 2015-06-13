@@ -289,6 +289,11 @@ def configure(keymap):
                 return True
             return False
 
+        def isVim(wnd):
+            if wnd.getClassName().startswith("Vim"):
+                return True
+            return False
+
         def isAndroidStudio(wnd):
             if wnd.getClassName().startswith("SunAwtFrame"):
                 return True
@@ -488,8 +493,9 @@ def configure(keymap):
                 root = pyauto.Window.getDesktop()
                 cnt =0
 
-                #M電卓から呼び出された時はカウントを1進めておく
-                if isMdentaku(keymap.getWindow()):
+                #M電卓とvimから呼び出された時はカウントを1進めておく
+                if (isMdentaku(keymap.getWindow()) or
+                        isVim(keymap.getWindow())):
                     cnt = 1
 
                 wnd = root.getFirstChild()
