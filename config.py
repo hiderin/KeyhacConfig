@@ -68,6 +68,10 @@ def job_queue(func):
 
     return _job_queue
 
+# グローバル変数
+#   マウス座標
+sp1=None
+sp2=None
 
 
 def configure(keymap):
@@ -1410,6 +1414,18 @@ def configure(keymap):
         def mouse_right_click():
             keymap.command_MouseButtonClick('right')()
 
+        def get_start_point():
+            global sp1
+            sp1 = Input.getCursorPos()
+
+        def get_end_point():
+            global sp2
+            sp2 = Input.getCursorPos()
+
+        def move_mouse():
+            global sp1 ,sp2
+            keymap.command_MouseMove(sp2[0]-sp1[0],sp2[1]-sp1[1])()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1515,6 +1531,12 @@ def configure(keymap):
                 mouse_double_click()
             elif keymap_vim.command_str == "rclk":
                 mouse_right_click()
+            elif keymap_vim.command_str == "set sp":
+                get_start_point()
+            elif keymap_vim.command_str == "set ep":
+                get_end_point()
+            elif keymap_vim.command_str == "mvm":
+                move_mouse()
 
             #show_command(1)
             keymap_vim.command_str = ""
