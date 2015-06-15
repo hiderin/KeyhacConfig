@@ -13,7 +13,6 @@ from keyhac import *
 # ・リーピート回数のMAX値を決める、コマンドから可変にする。         [rpt-max]
 # ・左右のCtrlとShiftをうまく使い分けてC-SpaceやS-Spaceを復活させる [ctrl-sft-spc]
 # ・IMEがONの時にテンキが入力出来ない時がある                       [ime-tenkey]
-# ・クリックやダブルクリックを実現させる                            [mouse-clk]
 # ・マウスポインタの位置を記録・再現させる。                        [mouse-clk]
 # ・Shift-oによる改行-insertmodeを実装する。                        [main]
 # ・エクセルの並べ替えのコマンドを追加する。                        [main]
@@ -1401,6 +1400,16 @@ def configure(keymap):
             if isExcel(keymap.getWindow()):
                 keymap.command_InputKey("A-O","A-C","A-U")()
 
+        def mouse_click():
+            keymap.command_MouseButtonClick()()
+
+        def mouse_double_click():
+            keymap.command_MouseButtonClick()()
+            keymap.command_MouseButtonClick()()
+
+        def mouse_right_click():
+            keymap.command_MouseButtonClick('right')()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1500,6 +1509,12 @@ def configure(keymap):
                 exl_show_row()
             elif keymap_vim.command_str == "showcol":
                 exl_show_col()
+            elif keymap_vim.command_str == "clk":
+                mouse_click()
+            elif keymap_vim.command_str == "dclk":
+                mouse_double_click()
+            elif keymap_vim.command_str == "rclk":
+                mouse_right_click()
 
             #show_command(1)
             keymap_vim.command_str = ""
