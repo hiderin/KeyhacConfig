@@ -694,7 +694,7 @@ def configure(keymap):
                     keymap_vim.flg_mcr = 2
                     i = 0
                     if keymap_vim.mcr_string[num]:
-                        keymap.popBalloon("mode","キーボードマクロ実行",1000)
+#                        keymap.popBalloon("mode","キーボードマクロ実行",1000)
                         for i in range(keymap_vim.mcr_count[num]-1):
                             send_vimmodekey(keymap_vim.mcr_string[num][i])
                     keymap_vim.flg_mcr = 0
