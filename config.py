@@ -699,7 +699,6 @@ def configure(keymap):
                 sect = "mcr"+str(num)+"_"
                 counter = keyhac_ini.getint("GLOBAL",sect+"cnt",0)
                 i = 0
-                print(sect+" read cnt="+str(counter))
                 if counter:
                     for i in range(counter):
                         add_macro(keyhac_ini.get("GLOBAL",sect+str(i),"null"))
@@ -710,7 +709,6 @@ def configure(keymap):
                 delete_ini_mcr(sect)
                 keyhac_ini.setint("GLOBAL",sect+"cnt",keymap_vim.mcr_count[num])
                 i = 0
-                print(sect+" cnt="+str(keymap_vim.mcr_count[num]))
                 if keymap_vim.mcr_count[num]:
                     for i in range(keymap_vim.mcr_count[num]):
                         keyhac_ini.set("GLOBAL",sect+str(i),keymap_vim.mcr_string[num][i])
