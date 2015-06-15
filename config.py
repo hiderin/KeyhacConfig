@@ -717,7 +717,8 @@ def configure(keymap):
             else:
                 keymap_vim.flg_imemode=1
 #                keymap.popBalloon("mode","日本語入力固定モード ON",1000)
-            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setime;%d'% keymap_vim.flg_imemode, "" )
+            if keymap_vim.flg_mcr != 2:
+                shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setime;%d'% keymap_vim.flg_imemode, "" )
 
         ############################################################################
         # 特定の機能を制御するクラス
@@ -887,7 +888,8 @@ def configure(keymap):
                     mode = "Search Mode"
                 keymap.popBalloon("mode",mode,1000)
             else:
-                shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmod;%d'% keymap_vim.mainmode, "" )
+                if keymap_vim.flg_mcr != 2:
+                    shellExecute( None, "..\\clnch\\clnch.exe",'--execute=setmod;%d'% keymap_vim.mainmode, "" )
 
 
 #        @job_queue
@@ -915,7 +917,8 @@ def configure(keymap):
         if flg_commandline:
             def show_command(cls=0):
                 commandstr=keymap_vim.command_str
-                shellExecute( None, "..\\clnch\\clnch.exe",'--execute="inpcmd;%s"'% commandstr, "" )
+                if keymap_vim.flg_mcr != 2:
+                    shellExecute( None, "..\\clnch\\clnch.exe",'--execute="inpcmd;%s"'% commandstr, "" )
 
 #                # 一度閉じて再表示
 #                if keymap.isListWindowOpened():
