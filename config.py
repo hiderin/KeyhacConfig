@@ -2435,11 +2435,11 @@ def configure(keymap):
 
         def input_tenkey(ichar):
             def _fanc():
-                ime = keymap.getWindow().getImeStatus()
+#                ime = keymap.getWindow().getImeStatus()
                 set_imeoff()
                 keymap.command_InputKey(ichar)()
-                if ime:
-                    set_imeon()
+#                if ime:
+#                    set_imeon()
             return _fanc
 
         # キーの単純な置き換え
