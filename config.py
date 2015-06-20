@@ -2217,19 +2217,22 @@ def configure(keymap):
 
         def send_vim_num(num):
             def _fanc():
-                if (isCraftWare(keymap.getWindow()) and
-                                keymap_vim.flg_cf_mode!=1):
-                    keymap.command_InputKey(str(num))()
-                    return
-                if (isAf(keymap.getWindow()) and
-                                keymap_vim.flg_cf_mode!=1):
-                    keymap.command_InputKey(str(num))()
-                    return
-                if isAfLogForm(keymap.getWindow()):
-                    keymap.command_InputKey(str(num))()
-                    return
+#                if (isCraftWare(keymap.getWindow()) and
+#                                keymap_vim.flg_cf_mode!=1):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+#                if (isAf(keymap.getWindow()) and
+#                                keymap_vim.flg_cf_mode!=1):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+#                if isAfLogForm(keymap.getWindow()):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+                # 通常の入力
                 if keymap_vim.mainmode==0 or keymap_vim.mainmode==2 or keymap_vim.mainmode==5:
                     keymap.command_InputKey(str(num))()
+                elif keymap_vim.mainmode==4:
+                    input_command(str(num))
                 else:
                     if num==0 and keymap_vim.repeatN==0:
                         vim_command_InputKey("0")
