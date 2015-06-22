@@ -1422,6 +1422,11 @@ def configure(keymap):
             global sp2
             sp2 = Input.getCursorPos()
 
+        def set_mouse_point():
+            global sp1
+            keymap.command_MouseMove(-10000,-10000)()
+            keymap.command_MouseMove(sp1[0],sp1[1])()
+
         def move_mouse():
             global sp1 ,sp2
             keymap.command_MouseMove(sp2[0]-sp1[0],sp2[1]-sp1[1])()
@@ -1537,6 +1542,8 @@ def configure(keymap):
                 get_end_point()
             elif keymap_vim.command_str == "mvm":
                 move_mouse()
+            elif keymap_vim.command_str == "mst":
+                set_mouse_point()
 
             #show_command(1)
             keymap_vim.command_str = ""
