@@ -68,6 +68,10 @@ def job_queue(func):
 
     return _job_queue
 
+# グローバル変数
+#   マウス座標
+sp1=None
+sp2=None
 
 
 def configure(keymap):
@@ -1410,6 +1414,23 @@ def configure(keymap):
         def mouse_right_click():
             keymap.command_MouseButtonClick('right')()
 
+        def get_start_point():
+            global sp1
+            sp1 = Input.getCursorPos()
+
+        def get_end_point():
+            global sp2
+            sp2 = Input.getCursorPos()
+
+        def set_mouse_point():
+            global sp1
+            keymap.command_MouseMove(-10000,-10000)()
+            keymap.command_MouseMove(sp1[0],sp1[1])()
+
+        def move_mouse():
+            global sp1 ,sp2
+            keymap.command_MouseMove(sp2[0]-sp1[0],sp2[1]-sp1[1])()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1515,6 +1536,14 @@ def configure(keymap):
                 mouse_double_click()
             elif keymap_vim.command_str == "rclk":
                 mouse_right_click()
+            elif keymap_vim.command_str == "set sp":
+                get_start_point()
+            elif keymap_vim.command_str == "set ep":
+                get_end_point()
+            elif keymap_vim.command_str == "mvm":
+                move_mouse()
+            elif keymap_vim.command_str == "mst":
+                set_mouse_point()
 
             #show_command(1)
             keymap_vim.command_str = ""
@@ -2195,19 +2224,22 @@ def configure(keymap):
 
         def send_vim_num(num):
             def _fanc():
-                if (isCraftWare(keymap.getWindow()) and
-                                keymap_vim.flg_cf_mode!=1):
-                    keymap.command_InputKey(str(num))()
-                    return
-                if (isAf(keymap.getWindow()) and
-                                keymap_vim.flg_cf_mode!=1):
-                    keymap.command_InputKey(str(num))()
-                    return
-                if isAfLogForm(keymap.getWindow()):
-                    keymap.command_InputKey(str(num))()
-                    return
+#                if (isCraftWare(keymap.getWindow()) and
+#                                keymap_vim.flg_cf_mode!=1):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+#                if (isAf(keymap.getWindow()) and
+#                                keymap_vim.flg_cf_mode!=1):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+#                if isAfLogForm(keymap.getWindow()):
+#                    keymap.command_InputKey(str(num))()
+#                    return
+                # 通常の入力
                 if keymap_vim.mainmode==0 or keymap_vim.mainmode==2 or keymap_vim.mainmode==5:
                     keymap.command_InputKey(str(num))()
+                elif keymap_vim.mainmode==4:
+                    input_command(str(num))
                 else:
                     if num==0 and keymap_vim.repeatN==0:
                         vim_command_InputKey("0")
