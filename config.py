@@ -10,7 +10,6 @@ from keyhac import *
 # 追加したい機能のメモ
 #-------------------------------------------------------------------------------
 # ・line単位でのコピー切り取り後の貼り付け処理が不十分              [line-ctrl]
-# ・リーピート回数のMAX値を決める、コマンドから可変にする。         [rpt-max]
 # ・左右のCtrlとShiftをうまく使い分けてC-SpaceやS-Spaceを復活させる [ctrl-sft-spc]
 # ・IMEがONの時にテンキが入力出来ない時がある                       [ime-tenkey]
 # ・マウスポインタの位置を記録・再現させる。                        [mouse-clk]
@@ -1434,6 +1433,9 @@ def configure(keymap):
             global sp1 ,sp2
             keymap.command_MouseMove(sp2[0]-sp1[0],sp2[1]-sp1[1])()
 
+        def set_repeatMax(strnum):
+            keymap_vim.repeatMax = int(strnum)
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -1553,6 +1555,10 @@ def configure(keymap):
                 move_mouse()
             elif keymap_vim.command_str == "mst":
                 set_mouse_point()
+            elif keymap_vim.command_str.startswith("set rptmax "):
+                strn = len(keymap_vim.command_str)
+                strnum = keymap_vim.command_str[11:strn]
+                set_repeatMax(strnum)
 
             #show_command(1)
             keymap_vim.command_str = ""
