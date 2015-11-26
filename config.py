@@ -1437,7 +1437,10 @@ def configure(keymap):
 
         def repeat(fanc):
             def _fanc():
-                N = keymap_vim.repeatN
+                if keymap_vim.repeatN >1000:
+                    N = 1000
+                else:
+                    N = keymap_vim.repeatN
                 keymap_vim.repeatN =0
                 if N==0:
                     N=1
@@ -1447,7 +1450,10 @@ def configure(keymap):
 
         def repeat2(fanc):
             def _fanc():
-                N = keymap_vim.repeatN
+                if keymap_vim.repeatN > 1000:
+                    N = 1000
+                else:
+                    N = keymap_vim.repeatN
                 keymap_vim.repeatN =0
                 if N==0:
                     N=1
