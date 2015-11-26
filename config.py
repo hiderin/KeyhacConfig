@@ -607,6 +607,9 @@ def configure(keymap):
         # コマンドの実行回数
         keymap_vim.repeatN = 0
 
+        # コマンドの実行回数最大値
+        keymap_vim.repeatMax = 1000
+
         # コマンドラインのコマンド
         keymap_vim.command_str =""
 
@@ -1437,8 +1440,8 @@ def configure(keymap):
 
         def repeat(fanc):
             def _fanc():
-                if keymap_vim.repeatN >1000:
-                    N = 1000
+                if keymap_vim.repeatN > keymap_vim.repeatMax:
+                    N = keymap_vim.repeatMax
                 else:
                     N = keymap_vim.repeatN
                 keymap_vim.repeatN =0
@@ -1450,8 +1453,8 @@ def configure(keymap):
 
         def repeat2(fanc):
             def _fanc():
-                if keymap_vim.repeatN > 1000:
-                    N = 1000
+                if keymap_vim.repeatN > keymap_vim.repeatMax:
+                    N = keymap_vim.repeatMax
                 else:
                     N = keymap_vim.repeatN
                 keymap_vim.repeatN =0
