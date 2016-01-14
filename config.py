@@ -245,6 +245,7 @@ def configure(keymap):
                                     "TFormSectionElementWizard",                    #Forum8フレーム3Dの断面編集ウィンドウ
                                     "TFormSectionEditor",                           #Forum8フレーム3Dの断面編集ウィンドウ
                                     "TFormWinterMain",                              #Engineer's Studioウィンドウ
+                                    "HH Parent",                                    #Engineer's Studioのヘルプウィンドウ
                                     "AcrobatSDIWindow",                             #Adobe Reader
                                     "ThunderRT6FormDC",                             #座標点プロット Mk_Protxy
                                     "Afx:00400000:b:00010003:00000006:024E0449",    #mp3tag
