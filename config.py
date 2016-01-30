@@ -244,6 +244,8 @@ def configure(keymap):
                                     "TFormAOCollectionEditor",                      #Forum8フレーム3Dのデータ入力ウィンドウ
                                     "TFormSectionElementWizard",                    #Forum8フレーム3Dの断面編集ウィンドウ
                                     "TFormSectionEditor",                           #Forum8フレーム3Dの断面編集ウィンドウ
+                                    "TFormWinterMain",                              #Engineer's Studioウィンドウ
+                                    "HH Parent",                                    #Engineer's Studioのヘルプウィンドウ
                                     "AcrobatSDIWindow",                             #Adobe Reader
                                     "ThunderRT6FormDC",                             #座標点プロット Mk_Protxy
                                     "Afx:00400000:b:00010003:00000006:024E0449",    #mp3tag
@@ -2448,8 +2450,7 @@ def configure(keymap):
                 if keymap_vim.tenkeymode==1:
                     keymap.command_InputKey("Tab")()
                 elif keymap_vim.tenkeymode==2:
-                    keymap.command_InputKey("Enter")()
-                    keymap_vim.tenkeycount += 1
+                    enter_down()
                 elif keymap_vim.tenkeymode==3:
                     if keymap_vim.flg_mcr:                 #マクロ実行中or記録中
                         keymap.command_InputKey("Enter")()
@@ -2467,7 +2468,9 @@ def configure(keymap):
                 keymap.command_InputKey("Down")()
                 keymap.command_InputKey("Home")()
                 keymap.command_InputKey("S-End")()
-
+            else:
+                keymap.command_InputKey("Enter")()
+            keymap_vim.tenkeycount += 1
 
         def tenkey_reset():
             if keymap_vim.tenkeymode == 1:
