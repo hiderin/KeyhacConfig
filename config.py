@@ -2462,6 +2462,13 @@ def configure(keymap):
                 if isMdentaku(keymap.getWindow()):
                     keymap_vim.flg_Mdentaku=1
 
+        def enter_down():
+            if isWord(keymap.getWindow()):
+                keymap.command_InputKey("Down")()
+                keymap.command_InputKey("Home")()
+                keymap.command_InputKey("S-End")()
+
+
         def tenkey_reset():
             if keymap_vim.tenkeymode == 1:
                 keymap.command_InputKey("Enter")()
