@@ -2481,7 +2481,10 @@ def configure(keymap):
                 keymap.command_InputKey("Enter")()
                 for i in range(N):
                     keymap.command_InputKey("Up")()
-                keymap.command_InputKey("Right")()
+                if isWord(keymap.getWindow()):
+                    keymap.command_InputKey("Tab")()
+                else:
+                    keymap.command_InputKey("Right")()
             elif keymap_vim.tenkeymode ==3:
                 method_Atmark("S-Enter")()
 
