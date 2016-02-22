@@ -1511,6 +1511,10 @@ def configure(keymap):
                 paste_value()
             elif keymap_vim.command_str == "preview":
                 print_preview()
+            elif keymap_vim.command_str == "inscl":
+                insert_cells()
+            elif keymap_vim.command_str == "delcl":
+                delete_cells()
             elif keymap_vim.command_str == "inscells":
                 insert_cells()
             elif keymap_vim.command_str == "delcells":
