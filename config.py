@@ -20,7 +20,6 @@ from keyhac import *
 # ・SkkIme以外のImeでもC-Jでime-on,lでime-offにする。               [like-skk]
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
-# ・NomalModeでのC-jもIME-ONにする。                                [main]
 ################################################################################
 
 # 日時をペーストする機能
@@ -2212,6 +2211,10 @@ def configure(keymap):
                 return "Tab"
             if ichar == "LC-m":
                 return "Enter"
+            if ichar == "LC-j":
+                if not keymap.getWindow().getImeStatus():
+                    keymap.command_InputKey("A-(243)")()
+                return "LC-j"
             return ichar
 
         def isCtrlAlt(ichar):
