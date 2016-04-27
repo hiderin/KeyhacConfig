@@ -2348,19 +2348,19 @@ def configure(keymap):
 
         keymap_global[ "RC-F4" ] = command_ActivateOrExecuteClunch
 
-    if 0:
-        def command_ActivateOrExecuteCfilter():
-            wnd = Window.find( "CfilerWindowClass", None)
+    if 1:
+        def command_ActivateOrExecuteVimFilerforGitBush():
+            wnd = Window.find( "Vim", None)
             if wnd:
                 if wnd.isMinimized():
                     wnd.restore()
                 wnd = wnd.getLastActivePopup()
                 wnd.setForeground()
             else:
-                executeFunc = keymap.command_ShellExecute( None, "..\cfiler\cfiler.exe", "", "" )
+                executeFunc = keymap.command_ShellExecute( None, "call_gitbash_gvim.bat", '', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteCfilter
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFilerforGitBush
 
     if 1:
         def command_ActivateOrExecuteVimFiler():
@@ -2374,9 +2374,9 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteVimFiler
 
-    if 1:
+    if 0:
         def command_ActivateOrExecuteAf():
             wnd = Window.find( "TAfxWForm", None)
             if wnd:
