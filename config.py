@@ -2211,10 +2211,6 @@ def configure(keymap):
                 return "Tab"
             if ichar == "LC-m":
                 return "Enter"
-            if ichar == "LC-j":
-                if not keymap.getWindow().getImeStatus():
-                    keymap.command_InputKey("A-(243)")()
-                return "LC-j"
             return ichar
 
         def isCtrlAlt(ichar):
@@ -2231,7 +2227,10 @@ def configure(keymap):
         def send_vim_key(ikey):
             def _fanc():
                 if keymap_vim.mainmode==0:
-                    ckey = exc_shortcut(ikey)
+                    if key=="LC-j":
+                        set_imeon()
+                    else:
+                        ckey = exc_shortcut(ikey)
                     keymap.command_InputKey(ckey)()
                 else:
                     send_vimmodekey(ikey)
