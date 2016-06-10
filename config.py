@@ -780,6 +780,7 @@ def configure(keymap):
             return False
 
         def isTenKeyClass(wnd):
+
             if ((wnd.getClassName() in (
                 "TRValGrid",
                 "TF8Edit",
@@ -2484,9 +2485,12 @@ def configure(keymap):
             if keymap_vim.tenkeymode == 1:
                 keymap.command_InputKey("Enter")()
             elif keymap_vim.tenkeymode ==2:
-                N = keymap_vim.tenkeycount+1
+                if isWord(keymap.getWindow()):
+                    N = keymap_vim.tenkeycount
+                else:
+                    N = keymap_vim.tenkeycount+1
+                    keymap.command_InputKey("Enter")()
                 keymap_vim.tenkeycount =0
-                keymap.command_InputKey("Enter")()
                 for i in range(N):
                     keymap.command_InputKey("Up")()
                 if isWord(keymap.getWindow()):
