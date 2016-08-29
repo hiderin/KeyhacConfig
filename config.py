@@ -2514,6 +2514,9 @@ def configure(keymap):
 #                    set_imeon()
             return _fanc
 
+        def input_comma():
+            keymap.command_InputKey("Comma")()
+
         # キーの単純な置き換え
         keymap.replaceKey( "Enter", 236 )
 
@@ -2535,6 +2538,8 @@ def configure(keymap):
         keymap_vim["U1-Num3"]=set_tenkeyMcrmode
 
         keymap_vim["U1-Num0"]=set_nonemode
+
+        keymap_vim["U1-Decimal"]=input_comma
 
         for i in range(10):
             keymap_global["Num"+str(i)] = input_tenkey("Num"+str(i))
