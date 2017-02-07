@@ -2309,6 +2309,18 @@ def configure(keymap):
         keymap_global[ "U0-A-L" ] = keymap.command_MouseMove(10,0)
         keymap_global[ "U0-A-K" ] = keymap.command_MouseMove(0,-10)
         keymap_global[ "U0-A-J" ] = keymap.command_MouseMove(0,10)
+
+        #カーソルキーの場合は1ドットづつの移動
+        keymap_global[ "U0-left" ] = keymap.command_MouseMove(-1,0)
+        keymap_global[ "U0-right" ] = keymap.command_MouseMove(1,0)
+        keymap_global[ "U0-up" ] = keymap.command_MouseMove(0,-1)
+        keymap_global[ "U0-down" ] = keymap.command_MouseMove(0,1)
+
+        keymap_global[ "U0-A-left" ] = keymap.command_MouseMove(-1,0)
+        keymap_global[ "U0-A-right" ] = keymap.command_MouseMove(1,0)
+        keymap_global[ "U0-A-up" ] = keymap.command_MouseMove(0,-1)
+        keymap_global[ "U0-A-down" ] = keymap.command_MouseMove(0,1)
+
         keymap_global[ "U0-RShift" ] = keymap.command_MouseButtonClick('left')
 #        keymap_global[ "U-U0-RShift" ] = keymap.command_MouseButtonUp('left')
         keymap_global[ "U0-U" ] = keymap.command_MouseWheel(1.0)
