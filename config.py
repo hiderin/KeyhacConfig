@@ -2331,6 +2331,7 @@ def configure(keymap):
         keymap_global[ "U0-Z" ] = togle_drag()
 
         keymap_global[ "U0-RShift" ] = keymap.command_MouseButtonClick('left')
+        keymap_global[ "U0-RCtrl" ] = keymap.command_MouseButtonClick('left')
 #        keymap_global[ "U-U0-RShift" ] = keymap.command_MouseButtonUp('left')
         keymap_global[ "U0-U" ] = keymap.command_MouseWheel(1.0)
         keymap_global[ "U0-N" ] = keymap.command_MouseWheel(-1.0)
