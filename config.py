@@ -2561,6 +2561,10 @@ def configure(keymap):
 
         keymap_vim["U1-Num0"]=set_nonemode
 
+        keymap_vim["U1-Num8"]= "S-8"
+
+        keymap_vim["U1-Num9"]= "S-9"
+
         keymap_vim["U1-Decimal"]=input_comma
 
         for i in range(10):
