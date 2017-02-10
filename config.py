@@ -72,6 +72,7 @@ def job_queue(func):
 sp1=None
 sp2=None
 
+tgl_drg=0
 
 def configure(keymap):
 
@@ -2316,10 +2317,18 @@ def configure(keymap):
         keymap_global[ "U0-up" ] = keymap.command_MouseMove(0,-1)
         keymap_global[ "U0-down" ] = keymap.command_MouseMove(0,1)
 
-        keymap_global[ "U0-A-left" ] = keymap.command_MouseMove(-1,0)
-        keymap_global[ "U0-A-right" ] = keymap.command_MouseMove(1,0)
-        keymap_global[ "U0-A-up" ] = keymap.command_MouseMove(0,-1)
-        keymap_global[ "U0-A-down" ] = keymap.command_MouseMove(0,1)
+        def togle_drag():
+            def _fanc():
+                global tgl_drg
+                if tgl_drg:
+                    tgl_drg=0
+                    keymap.command_MouseButtonUp('left')()
+                else:
+                    tgl_drg=1
+                    keymap.command_MouseButtonDown('left')()
+            return _fanc
+
+        keymap_global[ "U0-Z" ] = togle_drag()
 
         keymap_global[ "U0-RShift" ] = keymap.command_MouseButtonClick('left')
 #        keymap_global[ "U-U0-RShift" ] = keymap.command_MouseButtonUp('left')
