@@ -2455,7 +2455,7 @@ def configure(keymap):
 
         keymap_global[ "U0-c" ] = command_ActivateOrExecuteVimFiler
 
-    if 1:
+    if 0:
         def command_ActivateOrExecuteMCal():
             wnd = Window.find( "TMdenMainForm", None)
             if wnd:
