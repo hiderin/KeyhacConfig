@@ -400,21 +400,6 @@ def configure(keymap):
                 return True
             return False
 
-        def isKeyhac(wnd):
-            if wnd.getClassName() in ("keyhacWindowClass"):
-                return True
-            return False
-
-        def isClunch(wnd):
-            if wnd.getClassName() in ("ClnchWindowClass"):
-                return True
-            return False
-
-        def isSetCaretColor(wnd):
-            if wnd.getClassName() in ("setcaretcolor"):
-                return True
-            return False
-
         @profile
         def isAf(wnd):
             if wnd.getClassName() in ("TFileBox"):
@@ -507,21 +492,14 @@ def configure(keymap):
 
         def command_ExitApplication():
 
-            root = pyauto.Window.getDesktop()
-
-            wnd = root.getFirstChild()
-            keyhacapp = None
-                while wnd:
-                    #clunchとSetCaretColorを閉じる
-                    if isClunch(wnd) or isSetCaretColor(wnd):
-                        wnd.sendMessage(,WM_QUIT)
-                    #keyhacがあったら閉じる関数を一時保存
-                    if isKeyhac(wnd):
-                        def efunc():
-                            wnd.sendMessage(,WM_QUIT)
-                        ifunc = efunc
-                    wnd = wnd.getNext()
-            ifunc()
+            #clunchとSetCaretColorを閉じる
+            wnd = Window.find( "ClnchWindowClass", None)
+            wnd.sendMessage(None,WM_QUIT)
+#            wnd = Window.find( "TMdenMainForm", None)
+#            wnd.sendMessage(None,WM_QUIT)
+            #keyhacがあったら閉じる
+            wnd = Window.find( "keyhacWindowClass", None)
+            wnd.sendMessage(None,WM_QUIT)
 
         keymap_global[ "C-F12" ] = command_ExitApplication
 
