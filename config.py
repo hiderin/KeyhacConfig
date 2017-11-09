@@ -492,14 +492,13 @@ def configure(keymap):
 
         def command_ExitApplication():
 
-            #clunchとSetCaretColorを閉じる
-            wnd = Window.find( "ClnchWindowClass", None)
-            wnd.sendMessage(None,WM_QUIT)
-#            wnd = Window.find( "TMdenMainForm", None)
-#            wnd.sendMessage(None,WM_QUIT)
-            #keyhacがあったら閉じる
-            wnd = Window.find( "keyhacWindowClass", None)
-            wnd.sendMessage(None,WM_QUIT)
+            #SetCaretColorを閉じる
+            if isSetCaretOn():
+                shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
+            #clunchを閉じる
+            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
+            #keyhacを閉じる
+            shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
 
         keymap_global[ "C-F12" ] = command_ExitApplication
 
