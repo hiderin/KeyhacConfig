@@ -2405,7 +2405,7 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "call_gitbash_gvim.bat", '', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFilerforGitBush
+        keymap_global[ "RC-F5" ] = command_ActivateOrExecuteVimFilerforGitBush
 
     if 1:
         def command_ActivateOrExecuteVimFiler():
@@ -2419,7 +2419,7 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteVimFiler
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
 
     if 0:
         def command_ActivateOrExecuteAf():
