@@ -491,6 +491,19 @@ def configure(keymap):
         keymap_global[ "C-Tab" ] = command_SwitchApplication
 
 
+        def command_ExitApplication():
+
+            #SetCaretColorを閉じる
+            if isSetCaretOn():
+                shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
+            #clunchを閉じる
+            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
+            #keyhacを閉じる
+            shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
+
+        keymap_global[ "C-F12" ] = command_ExitApplication
+
+
         def command_NextApplication(num):
 
             def _fanc():
@@ -2425,7 +2438,7 @@ def configure(keymap):
 
         keymap_global[ "U0-c" ] = command_ActivateOrExecuteVimFiler
 
-    if 1:
+    if 0:
         def command_ActivateOrExecuteMCal():
             wnd = Window.find( "TMdenMainForm", None)
             if wnd:
