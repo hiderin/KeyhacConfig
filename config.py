@@ -238,39 +238,16 @@ def configure(keymap):
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
                                     "IEFrame",                                      #IE
                                     "js:TARO10",                                    #一太郎
-                                    "Afx:00400000:8:00010011:00000000:00010783",    #リキュール
-                                    "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
-                                    "TFormMemberResultViewer",                      #Forum8の解析結果ウィンドウ
-                                    "SunAwtFrame",                                  #Android Studio
-                                    "TFormOutlineElementWizard",                    #Forum8のアウトライン入力ウィンドウ
-                                    "TFormOutNew",                                  #Forum8断面算定のプレビューウィンドウ
-                                    "SmartVision Main Frame Window",                #SmartVision
-                                    "TINP_Hotai_Kui_Form",                          #Forum8杭基礎のデータ入力ウィンドウ
-                                    "TFormF3DModelEditor",                          #Forum8フレーム3Dのデータ入力ウィンドウ
-                                    "TFormAOCollectionEditor",                      #Forum8フレーム3Dのデータ入力ウィンドウ
-                                    "TFormSectionElementWizard",                    #Forum8フレーム3Dの断面編集ウィンドウ
-                                    "TFormSectionEditor",                           #Forum8フレーム3Dの断面編集ウィンドウ
-                                    "TFormWinterMain",                              #Engineer's Studioウィンドウ
-                                    "HH Parent",                                    #Engineer's Studioのヘルプウィンドウ
                                     "AcrobatSDIWindow",                             #Adobe Reader
-                                    "ThunderRT6FormDC",                             #座標点プロット Mk_Protxy
                                     "Afx:00400000:b:00010003:00000006:024E0449",    #mp3tag
-                                    "Afx:400000:8:10011:0:180573",                  #InstallShield
+                                    "Afx:400000:b:10003:6:b51e15",                  #Vix
                                     "Afx:00400000:b:00010003:00000006:01520717",    #SoundEngine
                                     "Afx:00400000:b:00010003:00000006:000408F9",    #SoundEngine
-                                    "Afx:400000:8:10011:0:2804b5",                  #VC++6
-                                    "TFrmMainForm",                                 #FRAME-Ⅰ
-                                    "Afx:400000:b:10011:6:86202b3",                 #PILE-1
-                                    "TSDIAppForm",                                  #PILE-2(BCB全般共通の可能性あり)
-                                    "{0F04AF43-7B85-46A5-A0A7-6D323A84AD7C}",       #Asr
-                                    "ThunderRT6MDIForm",                            #A9CAD
-                                    "TPreViewForm",                                 #COSMOのプレビューウィンドウ
 #                                    "TMdenMainForm",                                #M電卓
                                     "CabinetWClass",                                #エクスプローラ ウィンドウ
                                     "TFormMain",                                    # フォーラム断面算定：
                                     "TextEditorWindow",                             # sakuraEditor
                                     "emo.system.d7h8",                              # EMOffice
-                                    "TAppBuilder",                                  #BCB6
                                     "ConsoleWindowClass",
                                     "TkTopLevel",                                   #Git GUI
                                     "TAIMPMainForm",                                #AIMP(ポータブルミュージックプレーヤー)
