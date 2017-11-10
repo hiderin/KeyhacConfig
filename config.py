@@ -232,8 +232,11 @@ def configure(keymap):
         def isConsoleWindow(wnd):
             if wnd.getClassName() in (
 #                                    "Vim",                                        #Vim
-                                    "CfilerWindowClass",                            #内骨格
+                                    "WindowsForms10.Window.8.app.0.c4edf4_r13_ad1", #FrontCrew
+                                    "WindowsForms10.Window.8.app.0.f96fc5_r14_ad1", #FrontCrew
+                                    "MozillaWindowClass",                           #FireFox mail
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
+                                    "IEFrame",                                      #IE
                                     "js:TARO10",                                    #一太郎
                                     "Afx:00400000:8:00010011:00000000:00010783",    #リキュール
                                     "TF8PPFPreviewForm",                            #Forum8のプレビューウィンドウ
