@@ -2049,6 +2049,8 @@ def configure(keymap):
                     move_line_top()
                 elif ikey =="RC-e":
                     move_line_end()
+                elif ikey =="RC-r":
+                    paste()
                 elif ikey == "Esc":
                     set_vimmode()
                     keymap_vim.flg_cf_mode = 1
@@ -2162,6 +2164,8 @@ def configure(keymap):
                         keymap.command_InputKey("Enter")()
                     keymap.command_InputKey(ikey)()
                     set_vimmode()
+                elif ikey =="RC-r":
+                    paste()
                 elif ikey =="LC-p":
                     move_up()
                 elif ikey =="LC-n":
