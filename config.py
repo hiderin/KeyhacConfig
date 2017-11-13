@@ -2615,8 +2615,8 @@ def configure(keymap):
 
         # 定型文
         fixed_items = [
-            ( "hi-ho.mail",               "naohide-h@sky.hi-ho.ne.jp" ),
-            ( "HomeAddress",       "〒738-0005 広島県廿日市市桜尾本町13-33-204" ),
+            ( "問合せ返信",               "【安芸グランドホテル】お問いあわせの件につきまして" ),
+            ( "予約確認",       "安芸グランドホテル予約登録のご案内" ),
             ( "電話番号",                  "03-4567-8901" ),
             ( "Edit config.py",          keymap.command_EditConfig ),
             ( "ReLoad config.py",  keymap.command_ReloadConfig ),
