@@ -352,6 +352,7 @@ def configure(keymap):
                                               "Dwviewer.exe",
                                               "Mp3tag.exe",
                                               "walldf.exe",
+                                              "ViX.exe",
                                               "dwdesk.exe"))):
                 return True
             return False
@@ -771,6 +772,8 @@ def configure(keymap):
                 "MSFlexGridWndClass",       #Mightyのグリッド？
                 "RichTextWndClass",         #Mightyのグリッド？
                 "TInplaceEdit",             #Forum8のグリッド
+                "Chrome_WidgetWin_1",       #Chrome
+                "Internet Explorer_Server", #IE
                 "CRvgIntrEdit",             #TRValGridのセルのクラス
                 )) or
                 isExcel(wnd) or
