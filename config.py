@@ -1173,7 +1173,8 @@ def configure(keymap):
                 keymap.command_InputKey("C-v")()
             keymap_vim.flg_selmode = 0
             keymap_vim.flg_Mdentaku =0
-            set_vimmode()
+            if keymap_vim.mainmode  == 3:
+                set_vimmode()
 
         @profile
         def search():
