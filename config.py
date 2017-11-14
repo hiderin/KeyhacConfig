@@ -377,7 +377,7 @@ def configure(keymap):
         @profile
         def isCraftWare(wnd):
             if wnd.getClassName() in ("CfilerWindowClass",
-#                                       "ClnchWindowClass",
+                                       "CmemoWindowClass",
                                        "keyhacWindowClass"):
                 return True
             return False
