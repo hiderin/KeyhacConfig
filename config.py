@@ -472,6 +472,19 @@ def configure(keymap):
         keymap_global[ "C-Tab" ] = command_SwitchApplication
 
 
+        def command_ExitApplication():
+
+            #SetCaretColorを閉じる
+            if isSetCaretOn():
+                shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
+            #clunchを閉じる
+            shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
+            #keyhacを閉じる
+            shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
+
+        keymap_global[ "C-F12" ] = command_ExitApplication
+
+
         def command_NextApplication(num):
 
             def _fanc():
@@ -2375,7 +2388,7 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "call_gitbash_gvim.bat", '', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFilerforGitBush
+        keymap_global[ "RC-F5" ] = command_ActivateOrExecuteVimFilerforGitBush
 
     if 1:
         def command_ActivateOrExecuteVimFiler():
@@ -2389,7 +2402,7 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteVimFiler
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
 
     if 0:
         def command_ActivateOrExecuteAf():
@@ -2408,7 +2421,7 @@ def configure(keymap):
 
         keymap_global[ "U0-c" ] = command_ActivateOrExecuteVimFiler
 
-    if 1:
+    if 0:
         def command_ActivateOrExecuteMCal():
             wnd = Window.find( "TMdenMainForm", None)
             if wnd:
