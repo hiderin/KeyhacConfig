@@ -479,6 +479,8 @@ def configure(keymap):
                 shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
             #clunchを閉じる
             shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
+            #cmemoを閉じる
+            shellExecute( None, "taskkill","/im cmemo.exe /f", "" )
             #keyhacを閉じる
             shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
 
@@ -2376,6 +2378,21 @@ def configure(keymap):
 
         keymap_global[ "RC-F4" ] = command_ActivateOrExecuteClunch
 
+    # USER0-E : アクティブ化するか、まだであれば起動する
+    if 1:
+        def command_ActivateOrExecuteCmemo():
+            wnd = Window.find( "CmemoWindowClass", "cmemo" )
+            if wnd :
+                if wnd.isMinimized():
+                    wnd.restore()
+                wnd = wnd.getLastActivePopup()
+                wnd.setForeground()
+            else:
+                executeFunc = keymap.command_ShellExecute( None, "..\cmemo\cmemo.exe", "", "" )
+                executeFunc()
+
+        keymap_global[ "RC-F3" ] = command_ActivateOrExecuteCmemo
+
     if 1:
         def command_ActivateOrExecuteVimFilerforGitBush():
             wnd = Window.find( "Vim", None)
@@ -2742,4 +2759,5 @@ def configure(keymap):
 
 # keyhac起動後clunchも起動させる
     command_ActivateOrExecuteClunch(0)
+    command_ActivateOrExecuteCmemo()
     keymap.command_InputKey("ESC")()
