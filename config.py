@@ -2381,7 +2381,7 @@ def configure(keymap):
     # USER0-E : アクティブ化するか、まだであれば起動する
     if 1:
         def command_ActivateOrExecuteCmemo():
-            wnd = Window.find( "CmemoWindowClass", "cmemo" )
+            wnd = Window.find( "CmemoWindowClass", None)
             if wnd :
                 if wnd.isMinimized():
                     wnd.restore()
