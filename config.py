@@ -2381,15 +2381,26 @@ def configure(keymap):
     # USER0-E : アクティブ化するか、まだであれば起動する
     if 1:
         def command_ActivateOrExecuteCmemo():
-            wnd = Window.find( "CmemoWindowClass", None)
-            if wnd :
-                if wnd.isMinimized():
-                    wnd.restore()
-                wnd = wnd.getLastActivePopup()
-                wnd.setForeground()
-            else:
-                executeFunc = keymap.command_ShellExecute( None, "..\cmemo\cmemo.exe", "", "" )
-                executeFunc()
+            cmemo_exist = False
+            cmemo_cnt = 0
+
+            root = pyauto.Window.getDesktop()
+            wnd = root.getFirstChild()
+
+            while wnd:
+                if (wnd.getClassName() in ("CmemoWindowClass")):
+                    cmemo_exist = True
+                    if wnd.isMinimized():
+                        wnd.restore()
+                    wnd.setForeground()
+                    wnd.setActive()
+                    cmemo_cnt += 1
+                wnd = wnd.getNext()
+
+            print(cmemo_cnt)
+
+            if not cmemo_exist:
+                keymap.command_ShellExecute( None, "..\cmemo\cmemo.exe", "", "" )()
 
         keymap_global[ "RC-F3" ] = command_ActivateOrExecuteCmemo
 
