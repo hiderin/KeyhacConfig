@@ -2382,7 +2382,6 @@ def configure(keymap):
     if 1:
         def command_ActivateOrExecuteCmemo():
             cmemo_exist = False
-            cmemo_cnt = 0
 
             root = pyauto.Window.getDesktop()
             wnd = root.getFirstChild()
@@ -2394,10 +2393,7 @@ def configure(keymap):
                         wnd.restore()
                     wnd.setForeground()
                     wnd.setActive()
-                    cmemo_cnt += 1
                 wnd = wnd.getNext()
-
-            print(cmemo_cnt)
 
             if not cmemo_exist:
                 keymap.command_ShellExecute( None, "..\cmemo\cmemo.exe", "", "" )()
