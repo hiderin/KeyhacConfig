@@ -232,8 +232,6 @@ def configure(keymap):
         def isConsoleWindow(wnd):
             if wnd.getClassName() in (
 #                                    "Vim",                                        #Vim
-                                    "WindowsForms10.Window.8.app.0.c4edf4_r13_ad1", #FrontCrew
-                                    "WindowsForms10.Window.8.app.0.f96fc5_r14_ad1", #FrontCrew
                                     "MozillaWindowClass",                           #FireFox mail
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
                                     "IEFrame",                                      #IE
@@ -335,6 +333,11 @@ def configure(keymap):
                 return True
             return False
 
+        def isFrontCrew(wnd):
+            if wnd.getClassName().startswith("WindowsForms10.Window.8.app.0."):
+                return True
+            return False
+
         def isDocuWorks(wnd):
             if wnd.getClassName().startswith("AfxFrameOrView42"):
                 return True
@@ -416,6 +419,8 @@ def configure(keymap):
             elif isVC6(wnd):
                 return True
             elif isAfwWindow(wnd):
+                return True
+            elif isFrontCrew(wnd):
                 return True
             return False
 
