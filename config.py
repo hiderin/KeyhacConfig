@@ -2670,7 +2670,7 @@ def configure(keymap):
             ( "YYYY/MM/DD HH:MM:SS",   dateAndTime("%Y/%m/%d %H:%M:%S") ),
             ( "YYYY/MM/DD",            dateAndTime("%Y/%m/%d") ),
             ( "YYYYMMDD_HHMMSS",       dateAndTime("%Y%m%d_%H%M%S") ),
-            ( "YYYYMMDD",              dateAndTime("%Y%m%d") ),
+            ( "YYYY年MM月DD日",              dateAndTime("%Y年%m月%d日") ),
             ( "HHMMSS",                dateAndTime("%H%M%S") ),
         ]
 
