@@ -2432,7 +2432,24 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":VimFilerDouble"', "" )
                 executeFunc()
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+        def command_ActivateChrome():
+            #新規起動はさせない
+            wnd = root.getFirstChild()
+            while wnd:
+                if isChrome(wnd):
+                    if wnd.isMinimized():
+                        wnd.restore()
+                    wnd = wnd.getLastActivePopup()
+                    wnd.setForeground()
+                wnd = wnd.getNext()
+
+        def command_ActivateVimFilerOrChrome():
+            if isVim(keymap.getWindow()):
+                command_ActivateChrome()
+            else:
+                command_ActivateOrExecuteVimFiler()
+
+        keymap_global[ "LC-F6" ] = command_ActivateVimFilerOrChrome
 
     if 0:
         def command_ActivateOrExecuteAf():
