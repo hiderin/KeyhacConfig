@@ -2434,14 +2434,11 @@ def configure(keymap):
 
         def command_ActivateChrome():
             #新規起動はさせない
-            wnd = root.getFirstChild()
-            while wnd:
-                if isChrome(wnd):
-                    if wnd.isMinimized():
-                        wnd.restore()
-                    wnd = wnd.getLastActivePopup()
-                    wnd.setForeground()
-                wnd = wnd.getNext()
+            wnd = Window.find( "Chrome_WidgetWin_1", None)
+            if wnd.isMinimized():
+                wnd.restore()
+            wnd = wnd.getLastActivePopup()
+            wnd.setForeground()
 
         def command_ActivateVimFilerOrChrome():
             if isVim(keymap.getWindow()):
