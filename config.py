@@ -260,6 +260,9 @@ def configure(keymap):
                                     "wndclass_desked_gsk",                          #VBA
                                     "TFormIObitSD2",
                                     "LVM1414",                                      #LightVM
+                                    "MozillaWindowClass",                           #Thunderbird
+                                    "gdkWindowToplevel",                            #InkscapPortable GimpPortable
+                                    "Qt5QWindowIcon",                               #Avidemux_Portable
                                     "CkwWindowClass"):
                 return True
             return False
