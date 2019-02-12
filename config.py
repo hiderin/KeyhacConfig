@@ -483,6 +483,8 @@ def configure(keymap):
 
         def command_ExitApplication():
 
+            #Crtlを押し上げ
+            keymap.command_InputKey("U-Ctrl")()
             #SetCaretColorを閉じる
             if isSetCaretOn():
                 shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
