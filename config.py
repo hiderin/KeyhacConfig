@@ -2678,6 +2678,7 @@ def configure(keymap):
         # 定型文
         fixed_items = [
             ( "問合せ返信",               "【安芸グランドホテル】お問いあわせの件につきまして" ),
+            ( "問合せ返信(Eng)",               "【Aki Grand Hotel】 Regarding inquiries" ),
             ( "予約確認",       "安芸グランドホテル予約登録のご案内" ),
             ( "電話番号",                  "03-4567-8901" ),
             ( "Edit config.py",          keymap.command_EditConfig ),
