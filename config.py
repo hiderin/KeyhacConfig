@@ -22,6 +22,7 @@ from keyhac import *
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
 # ・疑似ドラッグのオン・オフもclnchに表示させる                     [main]
+# ・officeソフト操作時はAltでSerchモードに変換                      [main]
 ################################################################################
 
 # 日時をペーストする機能
@@ -234,6 +235,7 @@ def configure(keymap):
             if wnd.getClassName() in (
 #                                    "Vim",                                        #Vim
                                     "MozillaWindowClass",                           #FireFox mail
+                                    "HwndWrapper[DefaultDomain;;5ceb5923-b26c-4c2e-94d4-fefea944bf0b]", #MSSQL Manager
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
                                     "IEFrame",                                      #IE
                                     "js:TARO10",                                    #一太郎
