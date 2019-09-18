@@ -2050,6 +2050,11 @@ def configure(keymap):
                             set_searchmode()
                         else:
                             set_commandmode()
+                    elif ikey == "O-LAlt":
+                        #ExcelでAltが押されら場合はSesrchModeへ変更
+                        keymap.command_InputKey(ikey)()
+                        if isExcel(keymap.getWindow()):
+                            set_searchmode()
                     else:
                         if isCraftWare(keymap.getWindow()):
                             keymap.command_InputKey(ikey)()
@@ -2147,6 +2152,11 @@ def configure(keymap):
                             set_searchmode()
                         else:
                             search()
+                    elif ikey == "O-LAlt":
+                        #ExcelでAltが押されら場合はSesrchModeへ変更
+                        keymap.command_InputKey(ikey)()
+                        if isExcel(keymap.getWindow()):
+                            set_searchmode()
                     elif ikey == "s":
                         if (isCraftWare(keymap.getWindow()) and
                             keymap_vim.flg_cf_mode==0):
@@ -2310,8 +2320,9 @@ def configure(keymap):
         keymap_vim["C-(236)"] = send_vim_key("C-Enter")
         keymap_vim["S-(236)"] = send_vim_key("S-Enter")
         keymap_vim["S-LC-i"] = send_vim_key("S-Tab")
-        keymap_vim["D-Alt"] = send_vim_key("D-Alt")
-        keymap_vim["U-Alt"] = send_vim_key("U-Alt")
+#        keymap_vim["D-Alt"] = send_vim_key("D-Alt")
+#        keymap_vim["U-Alt"] = send_vim_key("U-Alt")
+        keymap_vim["O-LAlt"] = send_vim_key("O-LAlt")
 
         keymap_vim["Esc"] = send_vim_key("Esc")
         keymap_vim["LC-RShift"] = send_vim_key("LC-RShift")
