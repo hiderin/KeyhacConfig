@@ -2052,7 +2052,6 @@ def configure(keymap):
                             set_commandmode()
                     elif ikey == "O-LAlt":
                         #ExcelでAltが押されら場合はSesrchModeへ変更
-                        keymap.command_InputKey(ikey)()
                         if isExcel(keymap.getWindow()):
                             set_searchmode()
                     else:
@@ -2154,7 +2153,6 @@ def configure(keymap):
                             search()
                     elif ikey == "O-LAlt":
                         #ExcelでAltが押されら場合はSesrchModeへ変更
-                        keymap.command_InputKey(ikey)()
                         if isExcel(keymap.getWindow()):
                             set_searchmode()
                     elif ikey == "s":
