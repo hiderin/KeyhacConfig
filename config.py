@@ -22,7 +22,6 @@ from keyhac import *
 # ・ノーマルモード(vim_mode)でのスペースの入力を阻止する。          [main]
 # ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
 # ・疑似ドラッグのオン・オフもclnchに表示させる                     [main]
-# ・officeソフト操作時はAltでSerchモードに変換                      [main]
 ################################################################################
 
 # 日時をペーストする機能
@@ -309,6 +308,12 @@ def configure(keymap):
 
         def isWord(wnd):
             if wnd.getClassName().startswith("_WwG"):
+                return True
+            return False
+
+        def isOffice(wnd):
+            if (isExcel(wnd) or
+                    isWord(wnd)):
                 return True
             return False
 
@@ -2052,7 +2057,7 @@ def configure(keymap):
                             set_commandmode()
                     elif ikey == "O-LAlt":
                         #ExcelでAltが押されら場合はSesrchModeへ変更
-                        if isExcel(keymap.getWindow()):
+                        if isOffice(keymap.getWindow()):
                             set_searchmode()
                     else:
                         if isCraftWare(keymap.getWindow()):
