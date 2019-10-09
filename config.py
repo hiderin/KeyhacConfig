@@ -23,7 +23,6 @@ from keyhac import *
 # ・テンキー横の↓→キーをモディファイアにしてテンキーを拡張する    [tenkey-ctrl]
 # ・疑似ドラッグのオン・オフもclnchに表示させる                     [main]
 # ・officeソフト操作時はAltでSerchモードに変換                      [main]
-# ・アプリケーションリストからDropBoxを外す                         [main]
 ################################################################################
 
 # 日時をペーストする機能
@@ -265,7 +264,6 @@ def configure(keymap):
                                     "LVM1414",                                      #LightVM
                                     "MozillaWindowClass",                           #Thunderbird
                                     "gdkWindowToplevel",                            #InkscapPortable GimpPortable
-                                    "Qt5QWindowIcon",                               #Avidemux_Portable
                                     "CkwWindowClass"):
                 return True
             return False
@@ -341,7 +339,8 @@ def configure(keymap):
             return False
 
         def isFrontCrew(wnd):
-            if wnd.getClassName().startswith("WindowsForms10.Window.8.app.0."):
+            if (wnd.getClassName().startswith("WindowsForms10.Window.8.app.0.") and
+                    not wnd.getText().startswith("Skype")):
                 return True
             return False
 
