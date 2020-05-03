@@ -2468,7 +2468,14 @@ def configure(keymap):
             else:
                 command_ActivateOrExecuteVimFiler()
 
-        keymap_global[ "LC-F6" ] = command_ActivateVimFilerOrChrome
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+
+        def command_ActivateChromeAndReload():
+            command_ActivateChrome()
+            keymap.command_InputKey("F5")()
+
+        keymap_global[ "RC-F5" ] = command_ActivateChromeAndReload
+
 
     if 0:
         def command_ActivateOrExecuteAf():
