@@ -1460,6 +1460,13 @@ def configure(keymap):
         def set_repeatMax(strnum):
             keymap_vim.repeatMax = int(strnum)
 
+        def input_signature():
+            time_now = datetime.datetime.now()
+            month = time_now.strftime("%m").lstrip("0")
+            day = time_now.strftime("%d").lstrip("0")
+            date_without_0_jp = month + "/" + day + "橋本(尚)"
+            keymap.command_InputText(date_without_0_jp)()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -2118,6 +2125,8 @@ def configure(keymap):
                         keymap.command_InputKey("A-(243)")()
                     else:
                         keymap.command_InputKey(ikey)()
+                elif ikey == "RC-s":
+                    input_signature()
                 else:
                     keymap.command_InputKey(ikey)()
 
@@ -2714,7 +2723,7 @@ def configure(keymap):
             ( "YYYY/MM/DD HH:MM:SS",   dateAndTime("%Y/%m/%d %H:%M:%S") ),
             ( "YYYY/MM/DD",            dateAndTime("%Y/%m/%d") ),
             ( "YYYYMMDD_HHMMSS",       dateAndTime("%Y%m%d_%H%M%S") ),
-            ( "YYYY年MM月DD日",              dateAndTime("%Y年%m月%d日") ),
+            ( "YYYY年MM月DD日",               ),
             ( "HHMMSS",                dateAndTime("%H%M%S") ),
         ]
 
