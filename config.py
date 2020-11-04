@@ -1461,6 +1461,7 @@ def configure(keymap):
             keymap_vim.repeatMax = int(strnum)
 
         def input_signature():
+            set_imeoff()
             time_now = datetime.datetime.now()
             month = time_now.strftime("%m").lstrip("0")
             day = time_now.strftime("%d").lstrip("0")
