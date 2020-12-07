@@ -500,6 +500,8 @@ def configure(keymap):
             shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
             #cmemoを閉じる
             shellExecute( None, "taskkill","/im cmemo.exe /f", "" )
+            #PASS.exeを呼び出す
+            keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
             #keyhacを閉じる
             shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
 
@@ -1460,6 +1462,14 @@ def configure(keymap):
         def set_repeatMax(strnum):
             keymap_vim.repeatMax = int(strnum)
 
+        def input_signature():
+            set_imeoff()
+            time_now = datetime.datetime.now()
+            month = time_now.strftime("%m").lstrip("0")
+            day = time_now.strftime("%d").lstrip("0")
+            date_without_0_jp = month + "/" + day + "橋本(尚)"
+            keymap.command_InputText(date_without_0_jp)()
+
         ########################################################################
         # VimModeでのコマンド
         ########################################################################
@@ -2118,6 +2128,8 @@ def configure(keymap):
                         keymap.command_InputKey("A-(243)")()
                     else:
                         keymap.command_InputKey(ikey)()
+                elif ikey == "RC-s":
+                    input_signature()
                 else:
                     keymap.command_InputKey(ikey)()
 
@@ -2468,7 +2480,14 @@ def configure(keymap):
             else:
                 command_ActivateOrExecuteVimFiler()
 
-        keymap_global[ "LC-F6" ] = command_ActivateVimFilerOrChrome
+        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+
+        def command_ActivateChromeAndReload():
+            command_ActivateChrome()
+            keymap.command_InputKey("F5")()
+
+        keymap_global[ "RC-F5" ] = command_ActivateChromeAndReload
+
 
     if 0:
         def command_ActivateOrExecuteAf():
@@ -2707,7 +2726,7 @@ def configure(keymap):
             ( "YYYY/MM/DD HH:MM:SS",   dateAndTime("%Y/%m/%d %H:%M:%S") ),
             ( "YYYY/MM/DD",            dateAndTime("%Y/%m/%d") ),
             ( "YYYYMMDD_HHMMSS",       dateAndTime("%Y%m%d_%H%M%S") ),
-            ( "YYYY年MM月DD日",              dateAndTime("%Y年%m月%d日") ),
+            ( "YYYY年MM月DD日",               ),
             ( "HHMMSS",                dateAndTime("%H%M%S") ),
         ]
 
@@ -2810,4 +2829,5 @@ def configure(keymap):
 # keyhac起動後clunchも起動させる
     command_ActivateOrExecuteClunch(0)
     command_ActivateOrExecuteCmemo()
+    keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
     keymap.command_InputKey("ESC")()
