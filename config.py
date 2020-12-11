@@ -2713,6 +2713,7 @@ def configure(keymap):
 
         # 定型文
         fixed_items = [
+            ( "YYYY/MM/DD HH:MM 橋本",   dateAndTime("%Y/%m/%d　　　%H:%M　　 現在 　橋本") ),
             ( "問合せ返信",               "【安芸グランドホテル】お問いあわせの件につきまして" ),
             ( "問合せ返信(Eng)",               "【Aki Grand Hotel】 Regarding inquiries" ),
             ( "予約確認",       "安芸グランドホテル予約登録のご案内" ),
