@@ -159,11 +159,11 @@ def configure(keymap):
         keymap_global[ "U0-S-K" ] = keymap.command_MoveWindow( 0, -1 )
         keymap_global[ "U0-S-J" ] = keymap.command_MoveWindow( 0, +1 )
 
-        # USER0-Ctrl-↑↓←→ : 画面の端まで移動
-        keymap_global[ "U0-C-H" ] = keymap.command_MoveWindow_MonitorEdge(0)
-        keymap_global[ "U0-C-L" ] = keymap.command_MoveWindow_MonitorEdge(2)
-        keymap_global[ "U0-C-K" ] = keymap.command_MoveWindow_MonitorEdge(1)
-        keymap_global[ "U0-C-J" ] = keymap.command_MoveWindow_MonitorEdge(3)
+        # USER0-Ctrl-↑↓←→ : Win+←↓↑→に変更
+        keymap_global[ "U0-C-H" ] = keymap.command_InputKey("LW-Left")
+        keymap_global[ "U0-C-L" ] = keymap.command_InputKey("LW-Right")
+        keymap_global[ "U0-C-K" ] = keymap.command_InputKey("LW-Up")
+        keymap_global[ "U0-C-J" ] = keymap.command_InputKey("LW-Down")
 
 
         keymap_global["U0-X"]        = keymap.defineMultiStrokeKeymap("Win")
