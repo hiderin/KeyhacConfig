@@ -235,7 +235,6 @@ def configure(keymap):
             if wnd.getClassName() in (
 #                                    "Vim",                                        #Vim
                                     "MozillaWindowClass",                           #FireFox mail
-                                    "HwndWrapper[DefaultDomain;;5ceb5923-b26c-4c2e-94d4-fefea944bf0b]", #MSSQL Manager
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
                                     "IEFrame",                                      #IE
                                     "js:TARO10",                                    #一太郎
@@ -271,6 +270,11 @@ def configure(keymap):
         #########################################################################
         #各アプリケーション識別用関数
         #########################################################################
+
+        def isSQLserver(wnd):
+            if wnd.getClassName().startswith("HwndWrapper[DefaultDomain"):
+                return True
+            return False
 
         def isExcel(wnd):
             if wnd.getClassName().startswith("EXCEL"):
@@ -433,6 +437,8 @@ def configure(keymap):
             elif isAfwWindow(wnd):
                 return True
             elif isFrontCrew(wnd):
+                return True
+            elif isSQLserver(wnd):
                 return True
             return False
 
