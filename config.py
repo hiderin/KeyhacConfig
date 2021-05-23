@@ -2526,6 +2526,19 @@ def configure(keymap):
 
         keymap_global[ "LC-F12" ] = command_ActivateOrExecuteMCal
 
+    if 1:
+        def command_ActivateOrExecuteCTI():
+            wnd = Window.find( "TMdenMainForm", None)
+            if wnd:
+                if wnd.isMinimized():
+                    wnd.restore()
+                wnd = wnd.getLastActivePopup()
+                wnd.setForeground()
+            else:
+                executeFunc = keymap.command_ShellExecute( None, "C:\ホテルシステム\FrontCreue\CTI020.exe", "", "C:\ホテルシステム\FrontCreue" )
+                executeFunc()
+
+        keymap_global[ "RC-F9" ] = command_ActivateOrExecuteCTI
 
 ################################################################################
 #  自作関数
