@@ -172,7 +172,7 @@ def configure(keymap):
 
         # クリップボード履歴
         keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # リスト表示
-        keymap_global[ "C-F7"    ] = keymap.command_ClipboardList     # リスト表示
+        #keymap_global[ "C-F7"    ] = keymap.command_ClipboardList     # リスト表示
         keymap_global[ "C-S-X"   ] = keymap.command_ClipboardRotate   # 直近の履歴を末尾に回す
         keymap_global[ "C-S-A-X" ] = keymap.command_ClipboardRemove   # 直近の履歴を削除
         keymap.quote_mark = "> "                                      # 引用貼り付け時の記号
@@ -2754,6 +2754,15 @@ def configure(keymap):
             ( "定型文",         cblister_FixedPhrase(fixed_items) ),
             ( "日時",           cblister_FixedPhrase(date_and_time_items) ),
             ]
+
+    #クリップボードの表示(表示時にvimmodeに変更)
+    def show_clipbord_list():
+        def _fanc():
+            set_vimmode()
+            keymap.command_ClipboardList()
+        return _fanc
+
+    keymap_global[ "C-F7" ] = show_clipbord_list
 
 
 # Ctrl-F8でアクティブなアクティブなアプリケーションの情報を得る
