@@ -2757,10 +2757,8 @@ def configure(keymap):
 
     #クリップボードの表示(表示時にvimmodeに変更)
     def show_clipbord_list():
-        def _fanc():
-            set_vimmode()
-            keymap.command_ClipboardList()
-        return _fanc
+        set_vimmode()
+        keymap.command_ClipboardList()
 
     keymap_global[ "C-F7" ] = show_clipbord_list
 
