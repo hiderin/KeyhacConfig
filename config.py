@@ -506,8 +506,8 @@ def configure(keymap):
             shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
             #cmemoを閉じる
             shellExecute( None, "taskkill","/im cmemo.exe /f", "" )
-            #PASS.exeを呼び出す
-            keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
+#            #PASS.exeを呼び出す
+#            keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
             #keyhacを閉じる
             shellExecute( None, "taskkill","/im keyhac.exe /f", "" )
 
@@ -2849,5 +2849,5 @@ def configure(keymap):
 # keyhac起動後clunchも起動させる
     command_ActivateOrExecuteClunch(0)
     command_ActivateOrExecuteCmemo()
-    keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
+    #keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
     keymap.command_InputKey("ESC")()
