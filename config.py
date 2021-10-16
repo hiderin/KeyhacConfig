@@ -2458,7 +2458,7 @@ def configure(keymap):
                 executeFunc = keymap.command_ShellExecute( None, "call_gitbash_gvim.bat", '', "" )
                 executeFunc()
 
-        keymap_global[ "RC-F5" ] = command_ActivateOrExecuteVimFilerforGitBush
+#        keymap_global[ "RC-F5" ] = command_ActivateOrExecuteVimFilerforGitBush
 
     if 1:
         def command_ActivateOrExecuteVimFiler():
@@ -2486,13 +2486,13 @@ def configure(keymap):
             else:
                 command_ActivateOrExecuteVimFiler()
 
-        keymap_global[ "LC-F6" ] = command_ActivateOrExecuteVimFiler
+        keymap_global[ "C-F5" ] = command_ActivateOrExecuteVimFiler
 
-        def command_ActivateChromeAndReload():
-            command_ActivateChrome()
-            keymap.command_InputKey("F5")()
-
-        keymap_global[ "RC-F5" ] = command_ActivateChromeAndReload
+#        def command_ActivateChromeAndReload():
+#            command_ActivateChrome()
+#            keymap.command_InputKey("F5")()
+#
+#        keymap_global[ "RC-F5" ] = command_ActivateChromeAndReload
 
 
     if 0:
@@ -2508,7 +2508,7 @@ def configure(keymap):
                 executeFunc()
             set_vimmode(0)
 
-        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteAf
+#        keymap_global[ "LC-F5" ] = command_ActivateOrExecuteAf
 
         keymap_global[ "U0-c" ] = command_ActivateOrExecuteVimFiler
 
