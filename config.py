@@ -657,6 +657,9 @@ def configure(keymap):
         # EXCELLなどで日本語入力を固定する
         keymap_vim.flg_fixinput=0
 
+        # EXCELのCELL編集中を示すフラグ
+        keymap_vim.flg_excel_cell=0
+
         # M電卓で計算済みかどうか
         keymap_vim.flg_Mdentaku=0
 
@@ -798,7 +801,7 @@ def configure(keymap):
                 "Edit",
                 "TEdit",
                 )) or
-                isExcel(wnd) or
+                #isExcel(wnd) or
                 isAf(wnd) or
                 isCraftWare(wnd)):
                 return True
@@ -1039,6 +1042,7 @@ def configure(keymap):
             if (isExcel(keymap.getWindow()) and
                 not keymap.getWindow().getClassName().startswith("EXCEL6")):
                 keymap.command_InputKey("F2")()
+                keymap_vim.flg_excel_cell =1
             if keymap_vim.flg_imemode:
                 set_imeon()
             keymap_vim.mainmode =2
@@ -1819,6 +1823,10 @@ def configure(keymap):
         @profile
         def vim_command_InputKey(ikey):
 
+            #Excelでの動作を確認
+            if (keymap.getWindow().getClassName().startswith("EXCEL7")) and keymap_vim.flg_excel_cell==1 and keymap_vim.flg_fixinput==0:
+                set_vimmode()
+                keymap_vim.flg_excel_cell=0
 
             # VimMode(ノーマルモード)
             if keymap_vim.mainmode==1:
