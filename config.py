@@ -1824,7 +1824,7 @@ def configure(keymap):
         def vim_command_InputKey(ikey):
 
             #Excelでの動作を確認
-            if (keymap.getWindow().getClassName().startswith("EXCEL7")) and keymap_vim.flg_excel_cell==1 and keymap_vim.flg_fixinput==0:
+            if  keymap_vim.flg_excel_cell==1 and (keymap.getWindow().getClassName().startswith("EXCEL7")) and keymap_vim.flg_fixinput==0:
                 set_vimmode()
                 keymap_vim.flg_excel_cell=0
 
