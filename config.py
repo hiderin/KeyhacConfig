@@ -660,6 +660,9 @@ def configure(keymap):
         # EXCELのCELL編集中を示すフラグ
         keymap_vim.flg_excel_cell=0
 
+        # EXCELのCELL編集中のtabを示すフラグ
+        keymap_vim.flg_excel_tab=0
+
         # M電卓で計算済みかどうか
         keymap_vim.flg_Mdentaku=0
 
@@ -1824,9 +1827,11 @@ def configure(keymap):
         def vim_command_InputKey(ikey):
 
             #Excelでの動作を確認
-            if  keymap_vim.flg_excel_cell==1 and (keymap.getWindow().getClassName().startswith("EXCEL7")) and keymap_vim.flg_fixinput==0:
+            if  keymap_vim.flg_excel_cell==1 and keymap_vim.flg_excel_tab==0 and (keymap.getWindow().getClassName().startswith("EXCEL7")) and keymap_vim.flg_fixinput==0:
                 set_vimmode()
                 keymap_vim.flg_excel_cell=0
+            else:
+                keymap_vim.flg_excel_tab=0
 
             # VimMode(ノーマルモード)
             if keymap_vim.mainmode==1:
@@ -2144,6 +2149,10 @@ def configure(keymap):
                         keymap.command_InputKey(ikey)()
                 elif ikey == "RC-s":
                     input_signature()
+                elif ikey == "Tab":
+                    if (keymap.getWindow().getClassName().startswith("EXCEL6")):
+                        keymap_vim.flg_excel_tab=1
+                    input_tab()
                 else:
                     keymap.command_InputKey(ikey)()
 
