@@ -234,7 +234,7 @@ def configure(keymap):
         def isConsoleWindow(wnd):
             if wnd.getClassName() in (
 #                                    "Vim",                                        #Vim
-                                    "MozillaWindowClass",                           #FireFox mail
+#                                    "MozillaWindowClass",                           #FireFox mail
                                     "TForm_Large",                                  #AdvancedSystemCareのﾊﾟﾌｫｰﾏﾝｽﾓﾆﾀｰ
                                     "IEFrame",                                      #IE
                                     "js:TARO10",                                    #一太郎
@@ -261,7 +261,7 @@ def configure(keymap):
                                     "wndclass_desked_gsk",                          #VBA
                                     "TFormIObitSD2",
                                     "LVM1414",                                      #LightVM
-                                    "MozillaWindowClass",                           #Thunderbird
+#                                    "MozillaWindowClass",                           #Thunderbird
                                     "gdkWindowToplevel",                            #InkscapPortable GimpPortable
                                     "CkwWindowClass"):
                 return True
