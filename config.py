@@ -2478,6 +2478,17 @@ def configure(keymap):
 #        keymap_global[ "RC-F5" ] = command_ActivateOrExecuteVimFilerforGitBush
 
     if 1:
+        def command_ActivateOrExecuteFern():
+            wnd = Window.find( "Vim", None)
+            if wnd:
+                if wnd.isMinimized():
+                    wnd.restore()
+                wnd = wnd.getLastActivePopup()
+                wnd.setForeground()
+            else:
+                executeFunc = keymap.command_ShellExecute( None, "..\\portvim\\gvim.exe", '-c ":Fern .<CR>:vs<CR>"', "" )
+                executeFunc()
+
         def command_ActivateOrExecuteVimFiler():
             wnd = Window.find( "Vim", None)
             if wnd:
@@ -2504,6 +2515,7 @@ def configure(keymap):
                 command_ActivateOrExecuteVimFiler()
 
         keymap_global[ "C-F5" ] = command_ActivateOrExecuteVimFiler
+        keymap_global[ "C-F3" ] = command_ActivateOrExecuteFern
 
 #        def command_ActivateChromeAndReload():
 #            command_ActivateChrome()
