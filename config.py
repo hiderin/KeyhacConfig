@@ -415,6 +415,12 @@ def configure(keymap):
             return False
 
         @profile
+        def isDropbox(wnd):
+            if wnd.getClassName() in ("Chrome_WidgetWin_1") and wnd.getProcessName() in ("Dropbox.exe"):
+                return True
+            return False
+
+        @profile
         def isTButton(wnd):
             if wnd.getClassName() in ("TButton"):
                 return True
@@ -468,7 +474,7 @@ def configure(keymap):
                 wnd = root.getFirstChild()
                 applications2 = None
                 while wnd:
-                    if isApp(wnd) and not isAfwWindow(wnd):
+                    if isApp(wnd) and not isAfwWindow(wnd) and not isDropbox(wnd):
                         exetxt = wnd.getText()
                         if exetxt:
                             if wnd.getClassName()=="CabinetWClass":
@@ -535,7 +541,7 @@ def configure(keymap):
                         if exetxt:
                             if cnt == num:
                                  #あふwは無視する
-                                if not (isAfwWindow(wnd)):
+                                if not (isAfwWindow(wnd)) and not isDropbox(wnd):
                                     ForegroundWindow(wnd)()
                                     return
                                 else:
