@@ -504,6 +504,8 @@ def configure(keymap):
                 shellExecute( None, "..\SetCaretColor003\SetCaretColor.exe","", "" )
             #clunchを閉じる
             shellExecute( None, "..\\clnch\\clnch.exe",'--execute=Quit', "" )
+            #ShotScreenを閉じる
+            shellExecute( None, "taskkill","/im NonShotScreen.exe /f", "" )
             #cmemoを閉じる
             shellExecute( None, "taskkill","/im cmemo.exe /f", "" )
 #            #PASS.exeを呼び出す
@@ -2886,4 +2888,5 @@ def configure(keymap):
     command_ActivateOrExecuteClunch(0)
     command_ActivateOrExecuteCmemo()
     #keymap.command_ShellExecute( None, "..\\..\\PASS.exe", "", "" )()
+    keymap.command_ShellExecute( None, "..\\programfiles\\NonShotScreen\\NonShotScreen.exe", "120 500", "" )()
     keymap.command_InputKey("ESC")()
